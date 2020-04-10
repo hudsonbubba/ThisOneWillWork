@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestScript : MonoBehaviour
+public class DogScript : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
-        // Change made by Ryan
+        
     }
 
     // Update is called once per frame
