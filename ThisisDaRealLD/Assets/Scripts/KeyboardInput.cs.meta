@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: d08dd387d105f2b47b1b36a3c684a0d8
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - HorizontalAxis: {fileID: 11400000, guid: 81e698fe5880c3e4ca5d7dd54e7c8bdf, type: 2}
+  - VerticalAxis: {fileID: 11400000, guid: 8b69de44dd333d84cb17e08e60da27f3, type: 2}
+  - MouseXAxis: {fileID: 11400000, guid: feacdf87371f2434e867430decb65ede, type: 2}
+  - Mouse1: {fileID: 11400000, guid: 44d3bd7bc21ea3344b4a73188d02f06f, type: 2}
+  - Mouse2: {fileID: 11400000, guid: 219fe3bef301ffe479a0e9bc4e1b448f, type: 2}
+  - Space: {fileID: 11400000, guid: c18f92fb6ace7a64586c83e84b1a6614, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
