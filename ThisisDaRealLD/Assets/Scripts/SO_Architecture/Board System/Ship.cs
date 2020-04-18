@@ -16,5 +16,8 @@ public class Ship : ScriptableObject
     // Describes the action that this ship is planning to take
     public string action;
 
+    // A single character representing if it is player ('p') or enemy ship ('s1', 's2', ...), etc
+    public string shipTypeString;
+
 }
 

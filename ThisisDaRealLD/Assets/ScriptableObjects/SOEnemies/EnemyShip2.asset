@@ -16,3 +16,4 @@ MonoBehaviour:
   rowPosition: 0
   columnPosition: 0
   action: 
+  shipTypeString: s2
