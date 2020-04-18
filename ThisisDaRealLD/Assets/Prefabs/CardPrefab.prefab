@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 5653295880965106537}
   - component: {fileID: 6061580972278138461}
   - component: {fileID: 2616353353628821455}
+  - component: {fileID: 6283823284985796122}
+  - component: {fileID: 1392493285710790826}
   m_Layer: 0
   m_Name: CardPrefab
   m_TagString: Card
@@ -103,3 +105,41 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 35a9415c4496a6048a192a198c522891, type: 3}
   cardBack: {fileID: 21300000, guid: b09ebb96e93b5b8479daf555ca88bd5a, type: 3}
   cardIndex: 0
+--- !u!114 &6283823284985796122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5653295880965106536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f01936927c9af448859a484324fa3f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  animationDuration: 0.5
+--- !u!95 &1392493285710790826
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5653295880965106536}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
