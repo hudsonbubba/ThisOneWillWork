@@ -25,14 +25,23 @@ public class Resolver : MonoBehaviour
     {
         telegraphedBoardState.board = officialBoardState.board.Clone() as string[,];
 
+        resetPosition(playerShip);
+        foreach (Ship enemy in enemyShips.aliveList)
+        {
+            enemy.isDead = false;
+            resetPosition(enemy);
+        }
+
         // First resolve the player
         actionInterpreter(playerShip);
 
         // Next loop through the enemies and resolve
         foreach (Ship enemy in enemyShips.aliveList)
         {
-            enemy.isDead = false;
-            actionInterpreter(enemy);
+            if (!enemy.isDead)
+            {
+                actionInterpreter(enemy);
+            }
         }
 
         commitTurn();
@@ -71,6 +80,12 @@ public class Resolver : MonoBehaviour
         ship.columnPosition = ship.columnPositionTelegraph;
     }
 
+    void resetPosition(Ship ship)
+    {
+        ship.rowPositionTelegraph = ship.rowPosition;
+        ship.columnPositionTelegraph = ship.columnPosition;
+    }
+
     void actionInterpreter(Ship ship, string optionalDirection = null)
     {
         string action;
@@ -105,41 +120,40 @@ public class Resolver : MonoBehaviour
 
     void moveUp(Ship ship)
     {
-        int targetRow = ship.rowPosition - 1;
-        int targetColumn = ship.columnPosition;
+        int targetRow = ship.rowPositionTelegraph - 1;
+        int targetColumn = ship.columnPositionTelegraph;
         moveToTarget(ship, targetRow, targetColumn, "up");
 
     }
 
     void moveDown(Ship ship)
     {
-        int targetRow = ship.rowPosition + 1;
-        int targetColumn = ship.columnPosition;
+        int targetRow = ship.rowPositionTelegraph + 1;
+        int targetColumn = ship.columnPositionTelegraph;
         moveToTarget(ship, targetRow, targetColumn, "down");
     }
 
     void moveLeft(Ship ship)
     {
-        int targetRow = ship.rowPosition;
-        int targetColumn = ship.columnPosition - 1;
+        int targetRow = ship.rowPositionTelegraph;
+        int targetColumn = ship.columnPositionTelegraph - 1;
         moveToTarget(ship, targetRow, targetColumn, "left");
     }
 
     void moveRight(Ship ship)
     {
-        int targetRow = ship.rowPosition;
-        int targetColumn = ship.columnPosition + 1;
+        int targetRow = ship.rowPositionTelegraph;
+        int targetColumn = ship.columnPositionTelegraph + 1;
         moveToTarget(ship, targetRow, targetColumn, "right");
     }
 
     void moveToTarget(Ship ship, int targetRow, int targetColumn, string direction)
     {
-        int shipRow = ship.rowPosition;
-        int shipColumn = ship.columnPosition;
+        int shipRow = ship.rowPositionTelegraph;
+        int shipColumn = ship.columnPositionTelegraph;
         string shipString = ship.shipTypeString;
 
-        string targetCurrentContents = telegraphedBoardState.board[targetRow, targetColumn];
-        char targetFirstChar = targetCurrentContents[0];
+        
 
         if (targetRow < 0 || targetRow > 4 || targetColumn < 0 || targetColumn > 9)
         {
@@ -151,12 +165,15 @@ public class Resolver : MonoBehaviour
             }
             else if (shipString[0].Equals('s')) // Enemy hits boundary
             {
+                Debug.Log("Enemy goes out of bounds");
                 ship.isDead = true;
                 telegraphedBoardState.board[shipRow, shipColumn] = "e";
             }
         }
         else
         {
+            string targetCurrentContents = telegraphedBoardState.board[targetRow, targetColumn];
+            char targetFirstChar = targetCurrentContents[0];
             switch (targetFirstChar)
             {
                 case 'e': // Empty spot
@@ -186,6 +203,7 @@ public class Resolver : MonoBehaviour
                         ship.rowPositionTelegraph = targetRow;
                         ship.columnPositionTelegraph = targetColumn;
                         // Take Speedometer Damage
+                        Debug.Log("Damage taken!");
                     }
                     else if (shipString[0].Equals('s')) // Enemy hits obstacle
                     {
