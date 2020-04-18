@@ -9,6 +9,9 @@ public class Resolver : MonoBehaviour
     
     public AliveEnemyList enemyShips;
     public Ship playerShip;
+
+    private int MAX_SPEED = 3;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,11 +28,10 @@ public class Resolver : MonoBehaviour
     {
         telegraphedBoardState.board = officialBoardState.board.Clone() as string[,];
 
-        resetPosition(playerShip);
+        resetShip(playerShip);
         foreach (Ship enemy in enemyShips.aliveList)
         {
-            enemy.isDead = false;
-            resetPosition(enemy);
+            resetShip(enemy);
         }
 
         // First resolve the player
@@ -44,10 +46,26 @@ public class Resolver : MonoBehaviour
             }
         }
 
-        commitTurn();
+        // Then the player moves forward according to speed
+        for (int i = playerShip.speedTelegraph; i > 0; i--)
+        {
+            actionInterpreter(playerShip, "right");
+        }
+
+        // Then the enemies move forward according to speed
+        foreach (Ship enemy in enemyShips.aliveList)
+        {
+            if (!enemy.isDead)
+            {
+                for (int i = enemy.speedTelegraph; i > 0; i--)
+                {
+                    actionInterpreter(enemy, "right");
+                }
+            }
+        }
     }
 
-    void commitTurn()
+    public void e_commitTurn()
     {
         officialBoardState.board = telegraphedBoardState.board.Clone() as string[,];
 
@@ -67,23 +85,11 @@ public class Resolver : MonoBehaviour
         }
 
         // Update row/column positions of all ships
-        updatePosition(playerShip);
+        updateShip(playerShip);
         foreach (Ship enemy in enemyShips.aliveList)
         {
-            updatePosition(enemy);
+            updateShip(enemy);
         }
-    }
-
-    void updatePosition(Ship ship)
-    {
-        ship.rowPosition = ship.rowPositionTelegraph;
-        ship.columnPosition = ship.columnPositionTelegraph;
-    }
-
-    void resetPosition(Ship ship)
-    {
-        ship.rowPositionTelegraph = ship.rowPosition;
-        ship.columnPositionTelegraph = ship.columnPosition;
     }
 
     void actionInterpreter(Ship ship, string optionalDirection = null)
@@ -111,6 +117,9 @@ public class Resolver : MonoBehaviour
                 break;
             case "right":
                 moveRight(ship);
+                break;
+            case "accelerate":
+                accelerate(ship);
                 break;
             default:
                 // Takes no action
@@ -147,6 +156,18 @@ public class Resolver : MonoBehaviour
         moveToTarget(ship, targetRow, targetColumn, "right");
     }
 
+    void accelerate(Ship ship)
+    {
+        if (ship.speedTelegraph != MAX_SPEED)
+        {
+            ship.speedTelegraph++;
+        }
+        else
+        {
+            Debug.Log("Already at max speed!");
+        }
+    }
+
     void moveToTarget(Ship ship, int targetRow, int targetColumn, string direction)
     {
         int shipRow = ship.rowPositionTelegraph;
@@ -162,6 +183,7 @@ public class Resolver : MonoBehaviour
             {
                 // You die, game over
                 ship.isDead = true;
+                telegraphedBoardState.board[shipRow, shipColumn] = "e";
             }
             else if (shipString[0].Equals('s')) // Enemy hits boundary
             {
@@ -187,6 +209,7 @@ public class Resolver : MonoBehaviour
                     {
                         // You die, game over
                         ship.isDead = true;
+                        telegraphedBoardState.board[shipRow, shipColumn] = "e";
                     }
                     else if (shipString[0].Equals('s')) // Enemy hits boundary
                     {
@@ -202,8 +225,8 @@ public class Resolver : MonoBehaviour
                         telegraphedBoardState.board[shipRow, shipColumn] = "e";
                         ship.rowPositionTelegraph = targetRow;
                         ship.columnPositionTelegraph = targetColumn;
-                        // Take Speedometer Damage
-                        Debug.Log("Damage taken!");
+
+                        takeDamage(1);
                     }
                     else if (shipString[0].Equals('s')) // Enemy hits obstacle
                     {
@@ -233,6 +256,33 @@ public class Resolver : MonoBehaviour
                     break;
             }
         }
+    }
+
+    void takeDamage(int damageAmount)
+    {
+        Debug.Log("Damage taken!");
+        playerShip.speedTelegraph = playerShip.speedTelegraph - damageAmount;
+
+        if (playerShip.speedTelegraph <= 0)
+        {
+            playerShip.isDead = true;
+            telegraphedBoardState.board[playerShip.rowPosition, playerShip.columnPosition] = "e";
+        }
+    }
+
+    void updateShip(Ship ship)
+    {
+        ship.rowPosition = ship.rowPositionTelegraph;
+        ship.columnPosition = ship.columnPositionTelegraph;
+        ship.speed = ship.speedTelegraph;
+    }
+
+    void resetShip(Ship ship)
+    {
+        ship.rowPositionTelegraph = ship.rowPosition;
+        ship.columnPositionTelegraph = ship.columnPosition;
+        ship.speedTelegraph = ship.speed;
+        ship.isDead = false;
     }
 
     Ship findEnemyShipByTypeString(string targetString)

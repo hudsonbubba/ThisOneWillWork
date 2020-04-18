@@ -14,16 +14,22 @@ public class Ship : ScriptableObject
     public int columnPosition;
 
     // Describes the position for the telegraphed/upcoming actions
+    [HideInInspector]
     public int rowPositionTelegraph;
+    [HideInInspector]
     public int columnPositionTelegraph;
 
     // Describes the action that this ship is planning to take
     public string action;
 
+    public int speed;
+
+    [HideInInspector]
+    public int speedTelegraph;
+
     // A single character representing if it is player ('p') or enemy ship ('s1', 's2', ...), etc
     public string shipTypeString;
 
     public bool isDead = false;
-
 }
 
