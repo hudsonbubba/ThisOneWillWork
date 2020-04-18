@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: PlayerShip
   m_EditorClassIdentifier: 
   DeveloperDescription: 
-  rowPosition: 0
-  columnPosition: 0
-  action: 
+  rowPosition: 2
+  columnPosition: 3
+  rowPositionTelegraph: 0
+  columnPositionTelegraph: 0
+  action: up
+  shipTypeString: p
+  isDead: 0

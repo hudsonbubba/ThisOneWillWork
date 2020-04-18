@@ -21,19 +21,54 @@ public class Resolver : MonoBehaviour
         
     }
 
-    void previewTurns()
+    public void e_previewTurn()
     {
-        telegraphedBoardState.board = officialBoardState.board;
+        telegraphedBoardState.board = officialBoardState.board.Clone() as string[,];
 
         // First resolve the player
         actionInterpreter(playerShip);
 
         // Next loop through the enemies and resolve
-        enemyShips.aliveList.ForEach(ship => actionInterpreter(ship));
+        foreach (Ship enemy in enemyShips.aliveList)
+        {
+            enemy.isDead = false;
+            actionInterpreter(enemy);
+        }
 
-        // When actually applying the turns:
-        // 1) Make the officialBoardState = telegraphedBoardState
-        // 2) Set all ships' shipRow and shipColumn to their new spot
+        commitTurn();
+    }
+
+    void commitTurn()
+    {
+        officialBoardState.board = telegraphedBoardState.board.Clone() as string[,];
+
+        // Remove enemies from the alive list if they are marked as isDead
+        for (int i = enemyShips.aliveList.Count - 1; i >= 0; i--)
+        {
+            if (enemyShips.aliveList[i].isDead)
+            {
+                enemyShips.aliveList.RemoveAt(i);
+            }
+        }
+
+        // check if player isDead
+        if (playerShip.isDead)
+        {
+            Debug.Log("Game Over!");
+        }
+
+        // Update row/column positions of all ships
+        updatePosition(playerShip);
+        foreach (Ship enemy in enemyShips.aliveList)
+        {
+            updatePosition(enemy);
+        }
+    }
+
+    void updatePosition(Ship ship)
+    {
+        ship.rowPosition = ship.rowPositionTelegraph;
+        ship.columnPosition = ship.columnPositionTelegraph;
     }
 
     void actionInterpreter(Ship ship, string optionalDirection = null)
@@ -112,10 +147,11 @@ public class Resolver : MonoBehaviour
             if (string.Equals(shipString, "p")) // Player hits boundary
             {
                 // You die, game over
+                ship.isDead = true;
             }
             else if (shipString[0].Equals('s')) // Enemy hits boundary
             {
-                destroyEnemy(ship);
+                ship.isDead = true;
                 telegraphedBoardState.board[shipRow, shipColumn] = "e";
             }
         }
@@ -126,15 +162,19 @@ public class Resolver : MonoBehaviour
                 case 'e': // Empty spot
                     telegraphedBoardState.board[targetRow, targetColumn] = shipString;
                     telegraphedBoardState.board[shipRow, shipColumn] = "e";
+                    ship.rowPositionTelegraph = targetRow;
+                    ship.columnPositionTelegraph = targetColumn;
                     break;
                 case 'x': // Boundary
                     if (string.Equals(shipString, "p")) // Player hits boundary
                     {
                         // You die, game over
+                        ship.isDead = true;
                     }
                     else if (shipString[0].Equals('s')) // Enemy hits boundary
                     {
-                        destroyEnemy(ship);
+                        // destroyEnemy(ship);
+                        ship.isDead = true;
                         telegraphedBoardState.board[shipRow, shipColumn] = "e";
                     }
                     break;
@@ -143,11 +183,14 @@ public class Resolver : MonoBehaviour
                     {
                         telegraphedBoardState.board[targetRow, targetColumn] = shipString;
                         telegraphedBoardState.board[shipRow, shipColumn] = "e";
+                        ship.rowPositionTelegraph = targetRow;
+                        ship.columnPositionTelegraph = targetColumn;
                         // Take Speedometer Damage
                     }
                     else if (shipString[0].Equals('s')) // Enemy hits obstacle
                     {
-                        destroyEnemy(ship);
+                        // destroyEnemy(ship);
+                        ship.isDead = true;
                         telegraphedBoardState.board[targetRow, targetColumn] = "e";
                         telegraphedBoardState.board[shipRow, shipColumn] = "e";
                     }
@@ -156,12 +199,16 @@ public class Resolver : MonoBehaviour
                     actionInterpreter(playerShip, direction);
                     telegraphedBoardState.board[targetRow, targetColumn] = shipString;
                     telegraphedBoardState.board[shipRow, shipColumn] = "e";
+                    ship.rowPositionTelegraph = targetRow;
+                    ship.columnPositionTelegraph = targetColumn;
                     break;
                 case 's': // Enemy Ship
                     Ship hitShip = findEnemyShipByTypeString(targetCurrentContents);
                     actionInterpreter(hitShip, direction);
                     telegraphedBoardState.board[targetRow, targetColumn] = shipString;
                     telegraphedBoardState.board[shipRow, shipColumn] = "e";
+                    ship.rowPositionTelegraph = targetRow;
+                    ship.columnPositionTelegraph = targetColumn;
                     break;
                 default:
                     Debug.Log("Encountered unknown character in the board state");
@@ -188,26 +235,5 @@ public class Resolver : MonoBehaviour
         }
 
         return targetShip;
-    }
-
-    void destroyEnemy(Ship targetEnemy)
-    {
-        int shipIndex = -1; // <-- Cant leave null, ideally there should be no case where the ship isn't found so it should always be correct number
-        int i = 0;
-        foreach (Ship enemy in enemyShips.aliveList)
-        {
-           if (string.Equals(enemy.shipTypeString, targetEnemy.shipTypeString))
-            {
-                shipIndex = i;
-            }
-            i++;
-        }
-
-        if (shipIndex == -1)
-        {
-            Debug.Log("Destroyed ship is not in the alive ship array");
-        }
-
-        enemyShips.aliveList.RemoveAt(shipIndex);
     }
 }
