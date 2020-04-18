@@ -35,24 +35,24 @@ public class CardArt : MonoBehaviour
     public void setState(string state)
 #pragma warning restore IDE1006 // Naming Styles
     {
-        switch (state)
+        switch (state[0])
         {
-            case "b":
+            case 'b':
                 cardIndex = 0;
                 break;
-            case "e":
+            case 'e':
                 cardIndex = 1;
                 break;
-            case "p":
+            case 'p':
                 cardIndex = 2;
                 break;
-            case "s":
+            case 's':
                 cardIndex = 3;
                 break;
-            case "o":
+            case 'o':
                 cardIndex = 4;
                 break;
-            case "x":
+            case 'x':
                 cardIndex = 5;
                 break;
         }

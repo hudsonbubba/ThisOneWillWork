@@ -9,14 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5fae2d872bbbba4daa9c4e837082a24, type: 3}
-  m_Name: EnemyShip1
+  m_Script: {fileID: 11500000, guid: ef4e2d811c3b94d4b92b64f78027f32c, type: 3}
+  m_Name: CommitTurnEvent
   m_EditorClassIdentifier: 
-  DeveloperDescription: 
-  rowPosition: 1
-  columnPosition: 7
-  rowPositionTelegraph: 0
-  columnPositionTelegraph: 0
-  action: down
-  shipTypeString: s1
-  isDead: 0
