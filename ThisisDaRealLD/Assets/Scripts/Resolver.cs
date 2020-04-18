@@ -10,19 +10,11 @@ public class Resolver : MonoBehaviour
     public AliveEnemyList enemyShips;
     public Ship playerShip;
 
-    private int MAX_SPEED = 3;
+    // Events
+    public GameEvent endOfTurnEvent;
+    public GameEvent enemyDestroyedEvent;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int MAX_SPEED;
 
     public void e_previewTurn()
     {
@@ -69,13 +61,11 @@ public class Resolver : MonoBehaviour
     {
         officialBoardState.board = telegraphedBoardState.board.Clone() as string[,];
 
-        // Remove enemies from the alive list if they are marked as isDead
-        for (int i = enemyShips.aliveList.Count - 1; i >= 0; i--)
+        // Update row/column positions of all ships
+        updateShip(playerShip);
+        foreach (Ship enemy in enemyShips.aliveList)
         {
-            if (enemyShips.aliveList[i].isDead)
-            {
-                enemyShips.aliveList.RemoveAt(i);
-            }
+            updateShip(enemy);
         }
 
         // check if player isDead
@@ -84,12 +74,17 @@ public class Resolver : MonoBehaviour
             Debug.Log("Game Over!");
         }
 
-        // Update row/column positions of all ships
-        updateShip(playerShip);
-        foreach (Ship enemy in enemyShips.aliveList)
+        // Remove enemies from the alive list if they are marked as isDead
+        for (int i = enemyShips.aliveList.Count - 1; i >= 0; i--)
         {
-            updateShip(enemy);
+            if (enemyShips.aliveList[i].isDead)
+            {
+                enemyShips.aliveList.RemoveAt(i);
+                enemyDestroyedEvent.Raise();
+            }
         }
+
+        endOfTurnEvent.Raise();
     }
 
     void actionInterpreter(Ship ship, string optionalDirection = null)
@@ -261,7 +256,7 @@ public class Resolver : MonoBehaviour
     void takeDamage(int damageAmount)
     {
         Debug.Log("Damage taken!");
-        playerShip.speedTelegraph = playerShip.speedTelegraph - damageAmount;
+        playerShip.speedTelegraph -= damageAmount;
 
         if (playerShip.speedTelegraph <= 0)
         {

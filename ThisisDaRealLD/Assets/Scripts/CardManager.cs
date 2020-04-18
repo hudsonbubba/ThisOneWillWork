@@ -5,18 +5,9 @@ using UnityEngine;
 public class CardManager : MonoBehaviour
 {
     public CardCollection cardCollection;
-    // Start is called before the first frame update
-    void Start()
-    {
-        // Creates the drawpile from your deck (TEMP: maybe doesn't occur at start)
-        shuffleDeckToDraw();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    // Events
+    public GameEvent cardDiscardedEvent;
 
     void shuffleDeckToDraw()
     {
@@ -65,6 +56,8 @@ public class CardManager : MonoBehaviour
         int cardToDiscard = cardCollection.hand[handIndex];
         cardCollection.discardPile.Add(cardToDiscard);
         cardCollection.hand.RemoveAt(handIndex);
+
+        cardDiscardedEvent.Raise();
     }
 
 }
