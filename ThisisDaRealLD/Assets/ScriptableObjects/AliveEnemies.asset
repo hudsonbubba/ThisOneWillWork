@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b276fa18ef9638a4c9227884fec3483c, type: 3}
+  m_Name: AliveEnemies
+  m_EditorClassIdentifier: 
+  DeveloperDescription: 'List containing all of the EnemyShip SO''s that
+
+    are
+    currently alive/on board'
+  aliveArray:
+  - {fileID: 11400000, guid: 18b4d5908ac78d045889d0a96298d60b, type: 2}
+  - {fileID: 11400000, guid: 634de79618a4f184e88c4b18fc5b3f07, type: 2}
