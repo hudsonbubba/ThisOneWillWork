@@ -12,7 +12,7 @@ public class BoardState : ScriptableObject
 
     public const int rows = 5;
     public const int columns = 10;
-    public string[,] Board = new string[rows, columns]
+    public string[,] board = new string[rows, columns]
     {
         { "x", "x", "x", "x", "x", "x", "x", "x", "x", "x" },
         { "e", "e", "e", "e", "e", "e", "e", "e", "e", "e" },
