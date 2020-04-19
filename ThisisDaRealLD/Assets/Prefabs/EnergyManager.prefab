@@ -49,7 +49,8 @@ MonoBehaviour:
   energySO: {fileID: 11400000, guid: 29b93ba52d0259a49bfe619926ef2f6c, type: 2}
   energyLossPerTurn: 10
   energyGainPerKill: 20
-  energyGainPerDiscard: 20
+  energyGainPerBurn: 20
+  energyMax: 100
 --- !u!114 &1921666794409230223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,12 +117,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59bbb8fe6ec3fe743a134f49c3a118d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 2bf5c8245d253904883a8ec9b6db0ae7, type: 2}
+  Event: {fileID: 11400000, guid: 6e6dfde6bc34a834a8635f8a41367938, type: 2}
   Response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1921666794409230323}
-        m_MethodName: e_cardDiscarded
+        m_MethodName: e_cardBurned
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
