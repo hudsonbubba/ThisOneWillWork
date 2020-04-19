@@ -81,6 +81,7 @@ public class CardManager : MonoBehaviour
             cardCollection.hand.RemoveAt(handIndex);
             discardCard(cardToPreview);
         }
+        handIndexPlayed.SetValue(-1);
     }
 
     /*void playCard(int handIndex)
