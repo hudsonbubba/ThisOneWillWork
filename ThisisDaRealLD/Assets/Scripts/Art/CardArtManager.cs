@@ -48,4 +48,11 @@ public class CardArtManager : MonoBehaviour
         }
     }
 
+    public void AnimateCard(int fromRow, int fromCol, int toRow, int toCol, string dir, string shipString)
+    {
+        GameObject movingCard = cards[fromCol, fromRow];
+
+        movingCard.GetComponent<Flipper>().FlipCard();
+    }
+
 }

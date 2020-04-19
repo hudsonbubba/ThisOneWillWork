@@ -6,34 +6,48 @@ public class Flipper : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
     CardArt cardArt;
+    string onDeckArt;
 
-    public AnimationCurve scaleCurve;
-    public float animationDuration = 0.5f;
+    Animator animController;
+
+    public GameEvent EndAnimation;
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         cardArt = GetComponent<CardArt>();
+        animController = GetComponent<Animator>();
     }
 
-    public void FlipCard(Sprite startImage, Sprite endImage, int cardIndex, string dir)
+    public void FlipCard(string shipString, int cardIndex, string dir)
     {
         //Stop Coroutine
         //StartCoroutine
+        //spriteRenderer.sprite = startImage; Removed arg from above
+        onDeckArt = shipString;
+        animController.SetTrigger("Flip" + dir);
     }
 
+    public void ae_ArtSwap()
+    {
+        cardArt.setState(onDeckArt);
+        //spriteRenderer.sprite = onDeckArt;
+    }
+
+    public void ae_EndAnimation()
+    {
+        EndAnimation.Raise();
+    }
+
+    /*
     IEnumerator Flip(Sprite startImage, Sprite endImage, int cardIndex, string dir)
     {
 
         spriteRenderer.sprite = startImage;
 
-        float time = 0f;
         while (time <= 1f) //should probably be a modular duration
         {
-            float scale = scaleCurve.Evaluate(time);
-            time =+ Time.deltaTime / animationDuration;
 
-            Vector3 localScale = transform.localScale;
             switch (dir)
             {
                 case "up":
@@ -58,4 +72,5 @@ public class Flipper : MonoBehaviour
         }
         yield break;
     }
+    */
 }
