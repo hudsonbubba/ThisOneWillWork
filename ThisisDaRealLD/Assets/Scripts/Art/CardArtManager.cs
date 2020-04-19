@@ -47,28 +47,34 @@ public class CardArtManager : MonoBehaviour
         }
     }
 
-    public void AnimateCard(int fromRow, int fromCol, int toRow, int toCol, string dir, string shipString, bool isDead)
+    public void AnimateCard(int fromRow, int fromCol, int toRow, int toCol, string dir, string shipString, string targetString, bool isDead)
     {
         // StopCoroutine("AnimateCardEnumurator");
-        StartCoroutine(AnimateCardEnumurator(fromRow, fromCol, toRow, toCol, dir, shipString, isDead));
+        StartCoroutine(AnimateCardEnumurator(fromRow, fromCol, toRow, toCol, dir, shipString, targetString, isDead));
     }
 
-    IEnumerator AnimateCardEnumurator(int fromRow, int fromCol, int toRow, int toCol, string dir, string shipString, bool isDead)
+    IEnumerator AnimateCardEnumurator(int fromRow, int fromCol, int toRow, int toCol, string dir, string shipString, string targetString, bool isDead)
     {
 
         //Debug.Log("Called Animate Card, " + shipString.ToString());
-        GameObject movingFromCard = cards[fromRow, fromCol];
-        GameObject movingToCard = cards[toRow, toCol];
+        
+        
 
         if (!string.Equals(shipString, "m1"))
         {
+            GameObject movingFromCard = cards[fromRow, fromCol];
             movingFromCard.GetComponent<Flipper>().FlipCard("e", dir); // The card being moved from should always be empty
             yield return new WaitForSeconds(0.25f);
         }
 
         if (!isDead)
         {
+            GameObject movingToCard = cards[toRow, toCol];
             movingToCard.GetComponent<Flipper>().FlipCard(shipString, dir);
+        } else if (string.Equals(targetString, "o") || (shipString[0].Equals('m') && shipString[0].Equals('s'))) // Hitting an obstacle (meaning ship or missile hits it) or a missile hits a enemy ship, then need to set target location to be empty
+        {
+            GameObject movingToCard = cards[toRow, toCol];
+            movingToCard.GetComponent<Flipper>().FlipCard("e", dir);
         }
     }
 

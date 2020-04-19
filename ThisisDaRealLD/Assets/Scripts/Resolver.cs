@@ -63,7 +63,10 @@ public class Resolver : MonoBehaviour
         // Then the player moves forward according to speed
         for (int i = playerShip.speedTelegraph; i > 0; i--)
         {
-            yield return StartCoroutine(actionInterpreter(playerShip, "right"));
+            if (!playerShip.isDead)
+            {
+                yield return StartCoroutine(actionInterpreter(playerShip, "right"));
+            }
         }
 
         // Then the enemies move forward according to speed
@@ -222,7 +225,7 @@ public class Resolver : MonoBehaviour
         int shipColumn = ship.columnPositionTelegraph;
         string shipString = ship.shipTypeString;
 
-        
+        string targetString = "";
 
         if (targetRow < 0 || targetRow >= MAX_ROWS || targetColumn < 0 || targetColumn >= MAX_COLUMNS)
         {
@@ -248,6 +251,7 @@ public class Resolver : MonoBehaviour
                     telegraphedBoardState.board[targetRow, targetColumn] = shipString;
                     ship.rowPositionTelegraph = targetRow;
                     ship.columnPositionTelegraph = targetColumn;
+                    targetString = "e";
                     break;
 
                 case 'x': // Boundary
@@ -260,6 +264,7 @@ public class Resolver : MonoBehaviour
                     {
                         ship.isDead = true;
                     }
+                    targetString = "x";
                     break;
 
                 case 'o': // Obstacle (meteor, etc.)
@@ -276,6 +281,7 @@ public class Resolver : MonoBehaviour
                         ship.isDead = true;
                         telegraphedBoardState.board[targetRow, targetColumn] = "e";
                     }
+                    targetString = "o";
                     break;
 
                 case 'p': // Player Ship
@@ -291,6 +297,7 @@ public class Resolver : MonoBehaviour
                         ship.rowPositionTelegraph = targetRow;
                         ship.columnPositionTelegraph = targetColumn;
                     }
+                    targetString = "p";
                     break;
 
                 case 's': // Enemy Ship
@@ -308,6 +315,7 @@ public class Resolver : MonoBehaviour
                         ship.rowPositionTelegraph = targetRow;
                         ship.columnPositionTelegraph = targetColumn;
                     }
+                    targetString = "s";
                     break;
 
                 default:
@@ -321,30 +329,35 @@ public class Resolver : MonoBehaviour
             // All actions require clearing the previous space unless it is the first movement of a missile
             telegraphedBoardState.board[shipRow, shipColumn] = "e";
         }
+        yield return StartCoroutine(updateArt(shipRow, shipColumn, targetRow, targetColumn, direction, shipString, targetString, ship.isDead));
+    }
 
-        Debug.Log("New Coroutine started");
+    IEnumerator updateArt(int shipRow, int shipColumn, int targetRow, int targetColumn, string direction, string shipString, string targetString, bool isDead)
+    {
         animDone = false;
         animCounterMax = 0;
         if (!string.Equals(shipString, "m1"))
         {
             animCounterMax++;
         }
-        if (!ship.isDead)
+
+        if (!isDead)
+        {
+            animCounterMax++;
+        } else if (string.Equals(targetString, "o") || (shipString[0].Equals('m') && shipString[0].Equals('s')))
         {
             animCounterMax++;
         }
 
-        cardArtManager.AnimateCard(shipRow, shipColumn, targetRow, targetColumn, direction, shipString, ship.isDead);
+        cardArtManager.AnimateCard(shipRow, shipColumn, targetRow, targetColumn, direction, shipString, targetString, isDead);
         yield return new WaitUntil(() => animDone);
     }
     
     public void e_animationDone()
     {
         animCounter++;
-        Debug.Log("Animation Done! Count is: " + animCounter);
         if (animCounter >= animCounterMax)
         {
-            Debug.Log("Inside the if statement! All anims are done!");
             animCounter = 0;
             animDone = true;
         }
