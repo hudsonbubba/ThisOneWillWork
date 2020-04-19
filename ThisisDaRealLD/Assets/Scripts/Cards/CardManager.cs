@@ -17,6 +17,8 @@ public class CardManager : MonoBehaviour
 
     // Events
     public GameEvent cardDiscardedEvent;
+    public GameEvent cardDrawnEvent;
+    public GameEvent reshuffleDiscardEvent;
     public GameEvent previewCardEvent;
 
     void Start()
@@ -37,6 +39,8 @@ public class CardManager : MonoBehaviour
     void shuffleDiscardToDraw()
     {
         cardCollection.drawPile = shuffle(cardCollection.discardPile);
+        cardCollection.discardPile.Clear();
+        reshuffleDiscardEvent.Raise();
     }
 
     void drawCard()
@@ -45,35 +49,50 @@ public class CardManager : MonoBehaviour
         {
             shuffleDiscardToDraw();
         }
+
         int nextCard = cardCollection.drawPile[0];
-        cardCollection.hand.Add(nextCard);
         cardCollection.drawPile.RemoveAt(0);
+        if (cardCollection.hand.Count >= maxHandSize)
+        {
+            discardCard(nextCard);
+        }
+        else
+        {
+            cardCollection.hand.Add(nextCard);
+        }
+        cardDrawnEvent.Raise();
     }
 
     public void e_previewCard()
     {
         int handIndex = handIndexPlayed.Value;
-        int cardToPreview = cardCollection.hand[handIndex];
-        string cardAction = cardIndex.array[cardToPreview];
-        playerShip.action = cardAction;
-        previewCardEvent.Raise();
+        if (handIndex == -1) // Pass Turn
+        {
+            playerShip.action = "";
+            previewCardEvent.Raise();
+        } 
+        else // Play Card
+        {
+            int cardToPreview = cardCollection.hand[handIndex];
+            string cardAction = cardIndex.array[cardToPreview];
+            playerShip.action = cardAction;
+            previewCardEvent.Raise();
 
-        discardCard(handIndex);
+            cardCollection.hand.RemoveAt(handIndex);
+            discardCard(cardToPreview);
+        }
     }
 
     /*void playCard(int handIndex)
     {
         int cardToPlay = cardCollection.hand[handIndex];
         // Do card effect or talk to whatever manager handles playing the card
-        discardCard(handIndex);
+        discardCard(cardToPlay);
     }*/
 
-    void discardCard(int handIndex) // handIndex is what index the card was in your hand
+    void discardCard(int cardToDiscard)
     {
-        int cardToDiscard = cardCollection.hand[handIndex];
         cardCollection.discardPile.Add(cardToDiscard);
-        cardCollection.hand.RemoveAt(handIndex);
-
         cardDiscardedEvent.Raise();
         updateHand();
     }
