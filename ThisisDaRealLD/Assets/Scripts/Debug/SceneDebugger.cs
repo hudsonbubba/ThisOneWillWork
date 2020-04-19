@@ -20,6 +20,7 @@ public class SceneDebugger : MonoBehaviour
     public Ship enemyShip;
     public CardCollection cardCollection;
     public IntegerVariable cardPlayed;
+    public BoardCoords boardCoords;
 
     public int playerStartSpeed;
     public int enemyStartSpeed;
@@ -83,6 +84,22 @@ public class SceneDebugger : MonoBehaviour
     public void e_printBoardState()
     {
         string[,] matrix = officialBoardState.board;
+        string result = "";
+
+        for (int i = 0; i < matrix.GetLength(0); i++)
+        {
+            for (int j = 0; j < matrix.GetLength(1); j++)
+            {
+                result += matrix[i, j] + " ";
+            }
+            result += "\n";
+        }
+        Debug.Log(result);
+    }
+
+    public void e_printBoardCoords()
+    {
+        Vector3[,] matrix = boardCoords.board;
         string result = "";
 
         for (int i = 0; i < matrix.GetLength(0); i++)
