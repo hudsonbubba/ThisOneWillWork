@@ -9,6 +9,11 @@ public class SignalManager : MonoBehaviour
     public float signalGainPerTurn;
     public float signalGainPerRelay;
 
+    private void Start()
+    {
+        signalSO.SetValue(0);
+    }
+
     public void e_endOfTurn()
     {
         signalSO.Value += signalGainPerTurn;

@@ -15,9 +15,9 @@ public class BoardState : ScriptableObject
     public string[,] board = new string[rows, columns]
     {
         { "x", "x", "x", "x", "x", "x", "x", "x", "x", "x" },
-        { "e", "e", "e", "e", "e", "e", "e", "e", "e", "e" },
-        { "p", "e", "e", "e", "e", "e", "e", "e", "e", "e" },
-        { "s2", "e", "e", "e", "e", "e", "e", "e", "e", "e" },
+        { "e", "e", "e", "p", "e", "e", "e", "e", "e", "e" },
+        { "e", "e", "e", "e", "o", "e", "e", "e", "e", "e" },
+        { "e", "e", "e", "e", "e", "s1", "e", "e", "e", "e" },
         { "x", "x", "x", "x", "x", "x", "x", "x", "x", "x" },
     };
 }

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7446770726469598226}
   - component: {fileID: 7446770726469598237}
+  - component: {fileID: 594933119}
   m_Layer: 0
   m_Name: CardManager
   m_TagString: Untagged
@@ -44,4 +45,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardCollection: {fileID: 11400000, guid: 3dcc45d691dd30d4d992d6d7f6b483c4, type: 2}
+  cardIndex: {fileID: 11400000, guid: 9a761f380f9102f4fa01a9fc2d2bf235, type: 2}
+  playerShip: {fileID: 11400000, guid: 8080611786d3be849b2801cd8f04fecb, type: 2}
+  startHandSize: 4
+  maxHandSize: 6
+  cardButtonList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  handIndexPlayed: {fileID: 11400000, guid: 1a112118cd6926c4a8bed433e164032b, type: 2}
   cardDiscardedEvent: {fileID: 11400000, guid: 2bf5c8245d253904883a8ec9b6db0ae7, type: 2}
+  previewCardEvent: {fileID: 11400000, guid: 7e5ee337c8483c848b79f03bcaba41f3, type: 2}
+  endOfTurnEvent: {fileID: 11400000, guid: 2cdec073a4ab030428e056f0169bdcd2, type: 2}
+--- !u!114 &594933119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7446770726469598236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59bbb8fe6ec3fe743a134f49c3a118d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: d9a090633ec722449b7d3ac19e97ad6a, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7446770726469598237}
+        m_MethodName: e_previewCard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

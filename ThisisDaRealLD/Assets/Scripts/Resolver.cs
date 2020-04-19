@@ -355,9 +355,11 @@ public class Resolver : MonoBehaviour
     
     public void e_animationDone()
     {
+        Debug.Log("An Animation finished!");
         animCounter++;
         if (animCounter >= animCounterMax)
         {
+            Debug.Log("All animations done!");
             animCounter = 0;
             animDone = true;
         }
@@ -371,7 +373,7 @@ public class Resolver : MonoBehaviour
         if (playerShip.speedTelegraph <= 0)
         {
             playerShip.isDead = true;
-            telegraphedBoardState.board[playerShip.rowPosition, playerShip.columnPosition] = "e";
+            telegraphedBoardState.board[playerShip.rowPositionTelegraph, playerShip.columnPositionTelegraph] = "e";
         }
     }
 
