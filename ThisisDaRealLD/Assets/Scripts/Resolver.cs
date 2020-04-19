@@ -14,6 +14,7 @@ public class Resolver : MonoBehaviour
     CardArtManager cardArtManager;
 
     // Events
+    public GameEvent startOfTurnEvent;
     public GameEvent endOfTurnEvent;
     public GameEvent enemyDestroyedEvent;
 
@@ -111,6 +112,7 @@ public class Resolver : MonoBehaviour
         }
 
         endOfTurnEvent.Raise();
+        startOfTurnEvent.Raise();
     }
 
     IEnumerator actionInterpreter(Ship ship, string optionalDirection = null)

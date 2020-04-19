@@ -19,12 +19,13 @@ public class SceneDebugger : MonoBehaviour
     public AliveEnemyList aliveEnemyList;
     public Ship enemyShip;
     public CardCollection cardCollection;
+    public IntegerVariable cardPlayed;
 
     public int playerStartSpeed;
     public int enemyStartSpeed;
-    public string enemyAction;
     public List<int> testDeck = new List<int>();
 
+    public GameEvent startOfTurnEvent;
     public GameEvent updateArt;
 
     void Awake()
@@ -35,7 +36,7 @@ public class SceneDebugger : MonoBehaviour
         playerShip.isDead = false;
 
         // Enemy Reset
-        enemyShip.action = enemyAction;
+        enemyShip.action = "";
         enemyShip.speed = enemyStartSpeed;
         enemyShip.isDead = false;
 
@@ -49,6 +50,9 @@ public class SceneDebugger : MonoBehaviour
         cardCollection.drawPile.Clear();
         cardCollection.discardPile.Clear();
         cardCollection.hand.Clear();
+
+        // Reset card played tracker
+        cardPlayed.SetValue(-1);
 
         // Grab positions of player and enemy from BoardState
         for (int row = 0; row < officialBoardState.board.GetLength(0); row++)
@@ -73,6 +77,7 @@ public class SceneDebugger : MonoBehaviour
     void Start()
     {
         updateArt.Raise();
+        startOfTurnEvent.Raise();
     }
 
     public void e_printBoardState()

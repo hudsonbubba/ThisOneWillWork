@@ -102,12 +102,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59bbb8fe6ec3fe743a134f49c3a118d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 2cdec073a4ab030428e056f0169bdcd2, type: 2}
+  Event: {fileID: 11400000, guid: b2519e34da90eee4eba2ba1652f4b0ae, type: 2}
   Response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7446770726469598237}
-        m_MethodName: e_endTurn
+        m_MethodName: e_startTurn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
