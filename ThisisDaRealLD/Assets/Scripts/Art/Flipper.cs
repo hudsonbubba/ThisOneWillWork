@@ -19,22 +19,28 @@ public class Flipper : MonoBehaviour
         animController = GetComponent<Animator>();
     }
 
-    public void FlipCard(string shipString, int cardIndex, string dir)
+    public void FlipCard(string shipString, string dir)
     {
         //Stop Coroutine
         //StartCoroutine
         //spriteRenderer.sprite = startImage; Removed arg from above
         onDeckArt = shipString;
-        animController.SetTrigger("Flip" + dir);
+        animController.SetTrigger(dir);
     }
 
-    public void ae_ArtSwap()
+    public void ae_ArtSwap() //called by an animation event on the last frame of the flipStart animation (when it is invisible)
     {
+        Debug.Log(this.ToString() + " - Should change to: " + onDeckArt.ToString());
         cardArt.setState(onDeckArt);
         //spriteRenderer.sprite = onDeckArt;
     }
 
-    public void ae_EndAnimation()
+    public void ae_SwapCardBack()
+    {
+        cardArt.setState("b");
+    }
+
+    public void ae_EndAnimation() // called on the last frame of the flipEnd animation to notify it has finished
     {
         EndAnimation.Raise();
     }

@@ -118,13 +118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f01936927c9af448859a484324fa3f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  animationDuration: 0.5
   EndAnimation: {fileID: 11400000, guid: 82fec7581e146b8429616fe19728fefc, type: 2}
 --- !u!95 &1392493285710790826
 Animator:
@@ -169,6 +162,6 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: FlipUp
+          m_StringArgument: up
           m_BoolArgument: 0
         m_CallState: 2
