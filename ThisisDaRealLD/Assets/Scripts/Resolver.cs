@@ -6,15 +6,27 @@ public class Resolver : MonoBehaviour
 {
     public BoardState officialBoardState;
     public BoardState telegraphedBoardState;
-    
-    public AliveEnemyList enemyShips;
+
     public Ship playerShip;
+    public AliveEnemyList enemyShips;
+    public Ship missileShip;
 
     // Events
     public GameEvent endOfTurnEvent;
     public GameEvent enemyDestroyedEvent;
 
     public int MAX_SPEED;
+    public int objectDamage;
+    public int missileDamage;
+
+    private int MAX_ROWS;
+    private int MAX_COLUMNS;
+
+    void Start()
+    {
+        MAX_ROWS = officialBoardState.board.GetLength(0);
+        MAX_COLUMNS = officialBoardState.board.GetLength(1);
+    }
 
     public void e_previewTurn()
     {
@@ -116,6 +128,12 @@ public class Resolver : MonoBehaviour
             case "accelerate":
                 accelerate(ship);
                 break;
+            case "missileLeft":
+                shootMissile(ship, "left");
+                break;
+            case "missileRight":
+                shootMissile(ship, "right");
+                break;
             default:
                 // Takes no action
                 break;
@@ -163,6 +181,31 @@ public class Resolver : MonoBehaviour
         }
     }
 
+    void shootMissile(Ship ship, string direction)
+    {
+        missileShip.rowPosition = ship.rowPosition;
+        missileShip.columnPosition = ship.columnPosition;
+        resetShip(missileShip);
+        missileShip.shipTypeString = "m1"; // m1 signifies it is the first movement of the missle, so it shouldnt clear the card behind it
+
+        if (string.Equals(direction, "right"))
+        {
+            while(!missileShip.isDead)
+            {
+                moveRight(missileShip);
+                missileShip.shipTypeString = "m";
+            }
+        } 
+        else
+        {
+            while (!missileShip.isDead)
+            {
+                moveLeft(missileShip);
+                missileShip.shipTypeString = "m";
+            }
+        }
+    }
+
     void moveToTarget(Ship ship, int targetRow, int targetColumn, string direction)
     {
         int shipRow = ship.rowPositionTelegraph;
@@ -171,20 +214,18 @@ public class Resolver : MonoBehaviour
 
         
 
-        if (targetRow < 0 || targetRow > 4 || targetColumn < 0 || targetColumn > 9)
+        if (targetRow < 0 || targetRow >= MAX_ROWS || targetColumn < 0 || targetColumn >= MAX_COLUMNS)
         {
             Debug.Log("Trying to move out of bounds");
             if (string.Equals(shipString, "p")) // Player hits boundary
             {
                 // You die, game over
                 ship.isDead = true;
-                telegraphedBoardState.board[shipRow, shipColumn] = "e";
             }
-            else if (shipString[0].Equals('s')) // Enemy hits boundary
+            else if (shipString[0].Equals('s') || shipString[0].Equals('m')) // Enemy or missile hits boundary
             {
-                Debug.Log("Enemy goes out of bounds");
+                Debug.Log("Enemy or missile went out of bounds");
                 ship.isDead = true;
-                telegraphedBoardState.board[shipRow, shipColumn] = "e";
             }
         }
         else
@@ -195,61 +236,80 @@ public class Resolver : MonoBehaviour
             {
                 case 'e': // Empty spot
                     telegraphedBoardState.board[targetRow, targetColumn] = shipString;
-                    telegraphedBoardState.board[shipRow, shipColumn] = "e";
                     ship.rowPositionTelegraph = targetRow;
                     ship.columnPositionTelegraph = targetColumn;
                     break;
+
                 case 'x': // Boundary
                     if (string.Equals(shipString, "p")) // Player hits boundary
                     {
                         // You die, game over
                         ship.isDead = true;
-                        telegraphedBoardState.board[shipRow, shipColumn] = "e";
                     }
-                    else if (shipString[0].Equals('s')) // Enemy hits boundary
+                    else if (shipString[0].Equals('s') || shipString[0].Equals('m')) // Enemy hits boundary (or missile, technically not possible now but maybe later)
                     {
-                        // destroyEnemy(ship);
                         ship.isDead = true;
-                        telegraphedBoardState.board[shipRow, shipColumn] = "e";
                     }
                     break;
+
                 case 'o': // Obstacle (meteor, etc.)
                     if (string.Equals(shipString, "p")) // Player hits obstacle
                     {
                         telegraphedBoardState.board[targetRow, targetColumn] = shipString;
-                        telegraphedBoardState.board[shipRow, shipColumn] = "e";
+                        
                         ship.rowPositionTelegraph = targetRow;
                         ship.columnPositionTelegraph = targetColumn;
-
-                        takeDamage(1);
+                        takeDamage(objectDamage);
                     }
-                    else if (shipString[0].Equals('s')) // Enemy hits obstacle
+                    else if (shipString[0].Equals('s') || shipString[0].Equals('m')) // Enemy or missile hits obstacle
                     {
-                        // destroyEnemy(ship);
                         ship.isDead = true;
                         telegraphedBoardState.board[targetRow, targetColumn] = "e";
-                        telegraphedBoardState.board[shipRow, shipColumn] = "e";
                     }
                     break;
+
                 case 'p': // Player Ship
-                    actionInterpreter(playerShip, direction);
-                    telegraphedBoardState.board[targetRow, targetColumn] = shipString;
-                    telegraphedBoardState.board[shipRow, shipColumn] = "e";
-                    ship.rowPositionTelegraph = targetRow;
-                    ship.columnPositionTelegraph = targetColumn;
+                    if (shipString[0].Equals('m'))
+                    {
+                        ship.isDead = true; // Missile is now dead
+                        takeDamage(missileDamage); // Player takes damage
+                    }
+                    else
+                    {
+                        actionInterpreter(playerShip, direction);
+                        telegraphedBoardState.board[targetRow, targetColumn] = shipString;
+                        ship.rowPositionTelegraph = targetRow;
+                        ship.columnPositionTelegraph = targetColumn;
+                    }
                     break;
+
                 case 's': // Enemy Ship
                     Ship hitShip = findEnemyShipByTypeString(targetCurrentContents);
-                    actionInterpreter(hitShip, direction);
-                    telegraphedBoardState.board[targetRow, targetColumn] = shipString;
-                    telegraphedBoardState.board[shipRow, shipColumn] = "e";
-                    ship.rowPositionTelegraph = targetRow;
-                    ship.columnPositionTelegraph = targetColumn;
+                    if (shipString[0].Equals('m'))
+                    {
+                        ship.isDead = true; // Missile is now dead
+                        hitShip.isDead = true; // Hit ship is now dead
+                        telegraphedBoardState.board[targetRow, targetColumn] = "e";
+                    }
+                    else
+                    {
+                        actionInterpreter(hitShip, direction);
+                        telegraphedBoardState.board[targetRow, targetColumn] = shipString;
+                        ship.rowPositionTelegraph = targetRow;
+                        ship.columnPositionTelegraph = targetColumn;
+                    }
                     break;
+
                 default:
                     Debug.Log("Encountered unknown character in the board state");
-                    break;
+                    return;
+
             }
+        }
+        if (!string.Equals(shipString, "m1"))
+        {
+            // All actions require clearing the previous space unless it is the first movement of a missile
+            telegraphedBoardState.board[shipRow, shipColumn] = "e";
         }
     }
 
