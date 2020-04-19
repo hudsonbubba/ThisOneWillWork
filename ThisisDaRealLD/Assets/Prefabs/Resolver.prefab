@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9104292251510815705}
   - component: {fileID: 9104292251510815710}
   - component: {fileID: 9104292251510815707}
+  - component: {fileID: 1435382315}
   m_Layer: 0
   m_Name: Resolver
   m_TagString: Untagged
@@ -51,6 +52,7 @@ MonoBehaviour:
   playerShip: {fileID: 11400000, guid: 8080611786d3be849b2801cd8f04fecb, type: 2}
   enemyShips: {fileID: 11400000, guid: d92c8a2b81395984f95376dda3a70693, type: 2}
   missileShip: {fileID: 11400000, guid: bddaf1758509f9c44bc22bdf48fb27e9, type: 2}
+  startOfTurnEvent: {fileID: 11400000, guid: b2519e34da90eee4eba2ba1652f4b0ae, type: 2}
   endOfTurnEvent: {fileID: 11400000, guid: 2cdec073a4ab030428e056f0169bdcd2, type: 2}
   enemyDestroyedEvent: {fileID: 11400000, guid: 419b426c094a6244b98946e4fc822f06,
     type: 2}
@@ -74,7 +76,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 9104292251510815705}
-        m_MethodName: e_previewTurn
+        m_MethodName: e_previewEventCatcher
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -102,6 +104,33 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 9104292251510815705}
         m_MethodName: e_commitTurn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1435382315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9104292251510815711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59bbb8fe6ec3fe743a134f49c3a118d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 82fec7581e146b8429616fe19728fefc, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9104292251510815705}
+        m_MethodName: e_animationDone
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

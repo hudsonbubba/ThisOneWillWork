@@ -84,13 +84,6 @@ public class CardManager : MonoBehaviour
         handIndexPlayed.SetValue(-1);
     }
 
-    /*void playCard(int handIndex)
-    {
-        int cardToPlay = cardCollection.hand[handIndex];
-        // Do card effect or talk to whatever manager handles playing the card
-        discardCard(cardToPlay);
-    }*/
-
     void discardCard(int cardToDiscard)
     {
         cardCollection.discardPile.Add(cardToDiscard);
@@ -98,7 +91,7 @@ public class CardManager : MonoBehaviour
         updateHand();
     }
 
-    public void e_endTurn()
+    public void e_startTurn()
     {
         drawCard();
         updateHand();
