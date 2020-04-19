@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DeveloperDescription: 
   rowPosition: 2
-  columnPosition: 3
-  rowPositionTelegraph: 0
-  columnPositionTelegraph: 0
-  action: up
+  columnPosition: 0
+  rowPositionTelegraph: 2
+  columnPositionTelegraph: 4
+  action: 
+  speed: 2
+  speedTelegraph: 2
   shipTypeString: p
   isDead: 0

@@ -48,9 +48,15 @@ MonoBehaviour:
   officialBoardState: {fileID: 11400000, guid: e90488f4cd37fdd44a0b806a96e2aecb, type: 2}
   telegraphedBoardState: {fileID: 11400000, guid: 21fc344733ee6fd46b9f9529b75c43a9,
     type: 2}
-  enemyShips: {fileID: 11400000, guid: d92c8a2b81395984f95376dda3a70693, type: 2}
   playerShip: {fileID: 11400000, guid: 8080611786d3be849b2801cd8f04fecb, type: 2}
+  enemyShips: {fileID: 11400000, guid: d92c8a2b81395984f95376dda3a70693, type: 2}
+  missileShip: {fileID: 11400000, guid: bddaf1758509f9c44bc22bdf48fb27e9, type: 2}
+  endOfTurnEvent: {fileID: 11400000, guid: 2cdec073a4ab030428e056f0169bdcd2, type: 2}
+  enemyDestroyedEvent: {fileID: 11400000, guid: 419b426c094a6244b98946e4fc822f06,
+    type: 2}
   MAX_SPEED: 3
+  objectDamage: 1
+  missileDamage: 1
 --- !u!114 &9104292251510815710
 MonoBehaviour:
   m_ObjectHideFlags: 0

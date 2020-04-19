@@ -17,5 +17,4 @@ MonoBehaviour:
     are
     currently alive/on board'
   aliveList:
-  - {fileID: 11400000, guid: 18b4d5908ac78d045889d0a96298d60b, type: 2}
   - {fileID: 11400000, guid: 634de79618a4f184e88c4b18fc5b3f07, type: 2}

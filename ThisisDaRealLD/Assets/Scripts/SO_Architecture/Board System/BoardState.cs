@@ -16,8 +16,8 @@ public class BoardState : ScriptableObject
     {
         { "x", "x", "x", "x", "x", "x", "x", "x", "x", "x" },
         { "e", "e", "e", "e", "e", "e", "e", "e", "e", "e" },
-        { "e", "e", "e", "e", "e", "e", "e", "e", "e", "e" },
-        { "e", "e", "e", "e", "e", "e", "e", "e", "e", "e" },
+        { "p", "e", "e", "e", "e", "e", "e", "e", "e", "e" },
+        { "s2", "e", "e", "e", "e", "e", "e", "e", "e", "e" },
         { "x", "x", "x", "x", "x", "x", "x", "x", "x", "x" },
     };
 }

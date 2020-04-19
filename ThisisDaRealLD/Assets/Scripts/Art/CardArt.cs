@@ -49,7 +49,7 @@ public class CardArt : MonoBehaviour
             case 's':
                 cardIndex = 3;
                 break;
-            case 'o':
+            case 'm':
                 cardIndex = 4;
                 break;
             case 'x':

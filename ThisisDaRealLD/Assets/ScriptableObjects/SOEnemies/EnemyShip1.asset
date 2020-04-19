@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DeveloperDescription: 
   rowPosition: 1
-  columnPosition: 7
+  columnPosition: 1
   rowPositionTelegraph: 0
   columnPositionTelegraph: 0
   action: down

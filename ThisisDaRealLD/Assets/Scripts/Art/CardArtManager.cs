@@ -47,35 +47,29 @@ public class CardArtManager : MonoBehaviour
         }
     }
 
-    /*
-    public void AnimateCard(int fromRow, int fromCol, int toRow, int toCol, string dir, string shipString)
+    public void AnimateCard(int fromRow, int fromCol, int toRow, int toCol, string dir, string shipString, bool isDead)
+    {
+        // StopCoroutine("AnimateCardEnumurator");
+        StartCoroutine(AnimateCardEnumurator(fromRow, fromCol, toRow, toCol, dir, shipString, isDead));
+    }
+
+    IEnumerator AnimateCardEnumurator(int fromRow, int fromCol, int toRow, int toCol, string dir, string shipString, bool isDead)
     {
 
         //Debug.Log("Called Animate Card, " + shipString.ToString());
         GameObject movingFromCard = cards[fromRow, fromCol];
         GameObject movingToCard = cards[toRow, toCol];
 
-        movingFromCard.GetComponent<Flipper>().FlipCard("e", dir); // The card being moved from should always be empty
-        movingToCard.GetComponent<Flipper>().FlipCard(shipString, dir);
-    }
-    */
+        if (!string.Equals(shipString, "m1"))
+        {
+            movingFromCard.GetComponent<Flipper>().FlipCard("e", dir); // The card being moved from should always be empty
+            yield return new WaitForSeconds(0);
+        }
 
-    public void AnimateCard(int fromRow, int fromCol, int toRow, int toCol, string dir, string shipString)
-    {
-        StopCoroutine("AnimateCardEnumurator");
-        StartCoroutine(AnimateCardEnumurator(fromRow, fromCol, toRow, toCol, dir, shipString));
-    }
-
-    IEnumerator AnimateCardEnumurator(int fromRow, int fromCol, int toRow, int toCol, string dir, string shipString)
-    {
-
-        //Debug.Log("Called Animate Card, " + shipString.ToString());
-        GameObject movingFromCard = cards[fromRow, fromCol];
-        GameObject movingToCard = cards[toRow, toCol];
-
-        movingFromCard.GetComponent<Flipper>().FlipCard("e", dir); // The card being moved from should always be empty
-        yield return new WaitForSeconds(0.25f);
-        movingToCard.GetComponent<Flipper>().FlipCard(shipString, dir);
+        if (!isDead)
+        {
+            movingToCard.GetComponent<Flipper>().FlipCard(shipString, dir);
+        }
     }
 
 }

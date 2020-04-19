@@ -11,6 +11,8 @@ public class Resolver : MonoBehaviour
     public AliveEnemyList enemyShips;
     public Ship missileShip;
 
+    CardArtManager cardArtManager;
+
     // Events
     public GameEvent endOfTurnEvent;
     public GameEvent enemyDestroyedEvent;
@@ -21,11 +23,15 @@ public class Resolver : MonoBehaviour
 
     private int MAX_ROWS;
     private int MAX_COLUMNS;
+    private bool animDone = false;
+    private int animCounter = 0;
+    private int animCounterMax = 2;
 
     void Start()
     {
         MAX_ROWS = officialBoardState.board.GetLength(0);
         MAX_COLUMNS = officialBoardState.board.GetLength(1);
+        cardArtManager = GameObject.Find("CardArtManager").GetComponent<CardArtManager>();
     }
 
     public void e_previewTurn()
@@ -310,6 +316,36 @@ public class Resolver : MonoBehaviour
         {
             // All actions require clearing the previous space unless it is the first movement of a missile
             telegraphedBoardState.board[shipRow, shipColumn] = "e";
+        }
+
+        StartCoroutine(updateArt(shipRow, shipColumn, targetRow, targetColumn, direction, shipString, ship.isDead));
+    }
+
+    IEnumerator updateArt(int fromRow, int fromCol, int toRow, int toCol, string dir, string shipString, bool isDead)
+    {
+        animDone = false;
+        animCounterMax = 0;
+        if (!string.Equals(shipString, "m1"))
+        {
+            animCounterMax++;
+        }
+        if (!isDead)
+        {
+            animCounterMax++;
+        }
+        
+        cardArtManager.AnimateCard(fromRow, fromCol, toRow, toCol, dir, shipString, isDead);
+        yield return new WaitUntil(() => animDone);
+    }
+    
+    public void e_animationDone()
+    {
+        Debug.Log("Animation Done! Count is: " + animCounter);
+        animCounter++;
+        if (animCounter >= animCounterMax)
+        {
+            animCounter = 0;
+            animDone = true;
         }
     }
 
