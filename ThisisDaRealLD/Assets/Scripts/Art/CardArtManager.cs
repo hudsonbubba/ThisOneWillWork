@@ -63,7 +63,7 @@ public class CardArtManager : MonoBehaviour
         if (!string.Equals(shipString, "m1"))
         {
             movingFromCard.GetComponent<Flipper>().FlipCard("e", dir); // The card being moved from should always be empty
-            yield return new WaitForSeconds(0);
+            yield return new WaitForSeconds(0.25f);
         }
 
         if (!isDead)

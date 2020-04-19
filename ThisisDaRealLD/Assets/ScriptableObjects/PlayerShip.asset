@@ -16,7 +16,7 @@ MonoBehaviour:
   rowPosition: 2
   columnPosition: 0
   rowPositionTelegraph: 2
-  columnPositionTelegraph: 4
+  columnPositionTelegraph: 6
   action: 
   speed: 2
   speedTelegraph: 2

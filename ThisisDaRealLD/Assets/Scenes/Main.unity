@@ -1392,6 +1392,11 @@ PrefabInstance:
       propertyPath: cardArtManager
       value: 
       objectReference: {fileID: 1191386297}
+    - target: {fileID: 9104292251510815710, guid: 54271d982ded5e44cbff3638c1b7301a,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: e_previewEventCatcher
+      objectReference: {fileID: 0}
     - target: {fileID: 9104292251510815711, guid: 54271d982ded5e44cbff3638c1b7301a,
         type: 3}
       propertyPath: m_Name
@@ -4146,17 +4151,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: 7e5ee337c8483c848b79f03bcaba41f3, type: 2}
-        m_MethodName: Raise
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: 106e3f84beb9e4a41995032188ddff63, type: 2}
         m_MethodName: Raise
         m_Mode: 1
         m_Arguments:

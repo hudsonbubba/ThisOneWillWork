@@ -34,7 +34,11 @@ public class Resolver : MonoBehaviour
         cardArtManager = GameObject.Find("CardArtManager").GetComponent<CardArtManager>();
     }
 
-    public void e_previewTurn()
+    public void e_previewEventCatcher()
+    {
+        StartCoroutine(previewTurn());
+    }
+    public IEnumerator previewTurn()
     {
         telegraphedBoardState.board = officialBoardState.board.Clone() as string[,];
 
@@ -45,21 +49,21 @@ public class Resolver : MonoBehaviour
         }
 
         // First resolve the player
-        actionInterpreter(playerShip);
+        yield return StartCoroutine(actionInterpreter(playerShip));
 
         // Next loop through the enemies and resolve
         foreach (Ship enemy in enemyShips.aliveList)
         {
             if (!enemy.isDead)
             {
-                actionInterpreter(enemy);
+                yield return StartCoroutine(actionInterpreter(enemy));
             }
         }
 
         // Then the player moves forward according to speed
         for (int i = playerShip.speedTelegraph; i > 0; i--)
         {
-            actionInterpreter(playerShip, "right");
+            yield return StartCoroutine(actionInterpreter(playerShip, "right"));
         }
 
         // Then the enemies move forward according to speed
@@ -69,10 +73,11 @@ public class Resolver : MonoBehaviour
             {
                 for (int i = enemy.speedTelegraph; i > 0; i--)
                 {
-                    actionInterpreter(enemy, "right");
+                    yield return StartCoroutine(actionInterpreter(enemy, "right"));
                 }
             }
         }
+        e_commitTurn();
     }
 
     public void e_commitTurn()
@@ -105,7 +110,7 @@ public class Resolver : MonoBehaviour
         endOfTurnEvent.Raise();
     }
 
-    void actionInterpreter(Ship ship, string optionalDirection = null)
+    IEnumerator actionInterpreter(Ship ship, string optionalDirection = null)
     {
         string action;
         if (!(optionalDirection is null))
@@ -120,25 +125,25 @@ public class Resolver : MonoBehaviour
         switch (action)
         {
             case "up":
-                moveUp(ship);
+                yield return StartCoroutine(moveUp(ship));
                 break;
             case "down":
-                moveDown(ship);
+                yield return StartCoroutine(moveDown(ship));
                 break;
             case "left":
-                moveLeft(ship);
+                yield return StartCoroutine(moveLeft(ship));
                 break;
             case "right":
-                moveRight(ship);
+                yield return StartCoroutine(moveRight(ship));
                 break;
             case "accelerate":
                 accelerate(ship);
                 break;
             case "missileLeft":
-                shootMissile(ship, "left");
+                yield return StartCoroutine(shootMissile(ship, "left"));
                 break;
             case "missileRight":
-                shootMissile(ship, "right");
+                yield return StartCoroutine(shootMissile(ship, "right"));
                 break;
             default:
                 // Takes no action
@@ -146,33 +151,32 @@ public class Resolver : MonoBehaviour
         }
     }
 
-    void moveUp(Ship ship)
+    IEnumerator moveUp(Ship ship)
     {
         int targetRow = ship.rowPositionTelegraph - 1;
         int targetColumn = ship.columnPositionTelegraph;
-        moveToTarget(ship, targetRow, targetColumn, "up");
-
+        yield return StartCoroutine(moveToTarget(ship, targetRow, targetColumn, "up"));
     }
 
-    void moveDown(Ship ship)
+    IEnumerator moveDown(Ship ship)
     {
         int targetRow = ship.rowPositionTelegraph + 1;
         int targetColumn = ship.columnPositionTelegraph;
-        moveToTarget(ship, targetRow, targetColumn, "down");
+        yield return StartCoroutine(moveToTarget(ship, targetRow, targetColumn, "down"));
     }
 
-    void moveLeft(Ship ship)
+    IEnumerator moveLeft(Ship ship)
     {
         int targetRow = ship.rowPositionTelegraph;
         int targetColumn = ship.columnPositionTelegraph - 1;
-        moveToTarget(ship, targetRow, targetColumn, "left");
+        yield return StartCoroutine(moveToTarget(ship, targetRow, targetColumn, "left"));
     }
 
-    void moveRight(Ship ship)
+    IEnumerator moveRight(Ship ship)
     {
         int targetRow = ship.rowPositionTelegraph;
         int targetColumn = ship.columnPositionTelegraph + 1;
-        moveToTarget(ship, targetRow, targetColumn, "right");
+        yield return StartCoroutine(moveToTarget(ship, targetRow, targetColumn, "right"));
     }
 
     void accelerate(Ship ship)
@@ -187,7 +191,7 @@ public class Resolver : MonoBehaviour
         }
     }
 
-    void shootMissile(Ship ship, string direction)
+    IEnumerator shootMissile(Ship ship, string direction)
     {
         missileShip.rowPosition = ship.rowPosition;
         missileShip.columnPosition = ship.columnPosition;
@@ -198,7 +202,7 @@ public class Resolver : MonoBehaviour
         {
             while(!missileShip.isDead)
             {
-                moveRight(missileShip);
+                yield return StartCoroutine(moveRight(missileShip));
                 missileShip.shipTypeString = "m";
             }
         } 
@@ -206,13 +210,13 @@ public class Resolver : MonoBehaviour
         {
             while (!missileShip.isDead)
             {
-                moveLeft(missileShip);
+                yield return StartCoroutine(moveLeft(missileShip));
                 missileShip.shipTypeString = "m";
             }
         }
     }
 
-    void moveToTarget(Ship ship, int targetRow, int targetColumn, string direction)
+    IEnumerator moveToTarget(Ship ship, int targetRow, int targetColumn, string direction)
     {
         int shipRow = ship.rowPositionTelegraph;
         int shipColumn = ship.columnPositionTelegraph;
@@ -282,7 +286,7 @@ public class Resolver : MonoBehaviour
                     }
                     else
                     {
-                        actionInterpreter(playerShip, direction);
+                        yield return StartCoroutine(actionInterpreter(playerShip, direction));
                         telegraphedBoardState.board[targetRow, targetColumn] = shipString;
                         ship.rowPositionTelegraph = targetRow;
                         ship.columnPositionTelegraph = targetColumn;
@@ -299,7 +303,7 @@ public class Resolver : MonoBehaviour
                     }
                     else
                     {
-                        actionInterpreter(hitShip, direction);
+                        yield return StartCoroutine(actionInterpreter(hitShip, direction));
                         telegraphedBoardState.board[targetRow, targetColumn] = shipString;
                         ship.rowPositionTelegraph = targetRow;
                         ship.columnPositionTelegraph = targetColumn;
@@ -308,7 +312,7 @@ public class Resolver : MonoBehaviour
 
                 default:
                     Debug.Log("Encountered unknown character in the board state");
-                    return;
+                    yield break;
 
             }
         }
@@ -318,32 +322,29 @@ public class Resolver : MonoBehaviour
             telegraphedBoardState.board[shipRow, shipColumn] = "e";
         }
 
-        StartCoroutine(updateArt(shipRow, shipColumn, targetRow, targetColumn, direction, shipString, ship.isDead));
-    }
-
-    IEnumerator updateArt(int fromRow, int fromCol, int toRow, int toCol, string dir, string shipString, bool isDead)
-    {
+        Debug.Log("New Coroutine started");
         animDone = false;
         animCounterMax = 0;
         if (!string.Equals(shipString, "m1"))
         {
             animCounterMax++;
         }
-        if (!isDead)
+        if (!ship.isDead)
         {
             animCounterMax++;
         }
-        
-        cardArtManager.AnimateCard(fromRow, fromCol, toRow, toCol, dir, shipString, isDead);
+
+        cardArtManager.AnimateCard(shipRow, shipColumn, targetRow, targetColumn, direction, shipString, ship.isDead);
         yield return new WaitUntil(() => animDone);
     }
     
     public void e_animationDone()
     {
-        Debug.Log("Animation Done! Count is: " + animCounter);
         animCounter++;
+        Debug.Log("Animation Done! Count is: " + animCounter);
         if (animCounter >= animCounterMax)
         {
+            Debug.Log("Inside the if statement! All anims are done!");
             animCounter = 0;
             animDone = true;
         }
