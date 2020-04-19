@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2786818866842982355
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2786818866842982353}
+  - component: {fileID: 2786818866842982352}
+  m_Layer: 0
+  m_Name: DebugManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2786818866842982353
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2786818866842982355}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.640025, y: -2.8932304, z: -2.7304688}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2786818866842982352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2786818866842982355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87c90bf4912fa0f4691d753deb360947, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  officialBoardState: {fileID: 11400000, guid: e90488f4cd37fdd44a0b806a96e2aecb, type: 2}
+  playerShip: {fileID: 11400000, guid: 8080611786d3be849b2801cd8f04fecb, type: 2}
+  aliveEnemyList: {fileID: 11400000, guid: d92c8a2b81395984f95376dda3a70693, type: 2}
+  enemyShip: {fileID: 11400000, guid: 18b4d5908ac78d045889d0a96298d60b, type: 2}
+  cardCollection: {fileID: 11400000, guid: 3dcc45d691dd30d4d992d6d7f6b483c4, type: 2}
+  playerStartSpeed: 1
+  enemyStartSpeed: 1
+  enemyAction: right
+  testDeck: 00000000000000000100000001000000020000000200000003000000030000000400000004000000
+  updateArt: {fileID: 11400000, guid: b4a70c8ebe0cc6040b8610ab77f92481, type: 2}
