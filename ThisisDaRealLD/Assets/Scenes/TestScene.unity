@@ -1255,6 +1255,7 @@ MonoBehaviour:
   enemyDestroyedEvent: {fileID: 0}
   speedUpEvent: {fileID: 0}
   slowDownEvent: {fileID: 0}
+  updateReticules: {fileID: 0}
   MAX_SPEED: 0
   objectDamage: 0
   missileDamage: 0
@@ -1407,31 +1408,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Card
-      objectReference: {fileID: 0}
-    - target: {fileID: 5304186129812578183, guid: d4e6349d32b69ad469d7b239f51787c5,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 346d178580377494c8c227518322e353, type: 2}
-    - target: {fileID: 5688769602651561928, guid: d4e6349d32b69ad469d7b239f51787c5,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5688769602651561928, guid: d4e6349d32b69ad469d7b239f51787c5,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 1e41a6a9bf5362e45852b639d7dfdc9e, type: 2}
-    - target: {fileID: 8039259257405747450, guid: d4e6349d32b69ad469d7b239f51787c5,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8039259257405747450, guid: d4e6349d32b69ad469d7b239f51787c5,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4e6349d32b69ad469d7b239f51787c5, type: 3}

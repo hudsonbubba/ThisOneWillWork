@@ -128,7 +128,7 @@ public class TurnPredictor : MonoBehaviour
         List<Vector2> temp = new List<Vector2>();
         if(predictorDic.TryGetValue(shipString, out temp))
         {
-            Vector2 tempVector2 = new Vector2(targetCol* 2.4f, targetRow * -1.73f); //just how far apart the cards are 
+            Vector2 tempVector2 = new Vector2(targetRow * -1.73f, targetCol * 2.4f); //just how far apart the cards are 
             temp.Add(tempVector2);
         } else
         {
