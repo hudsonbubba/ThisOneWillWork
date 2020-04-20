@@ -23,11 +23,9 @@ public class MissileTokenUpdate : MonoBehaviour
     {
         foreach (Ship ship in aliveEnemyList.aliveList)
         {
-            Debug.Log("Checking " + myShip.shipTypeString + " against " + ship.shipTypeString);
             if (string.Equals(ship.shipTypeString, myShip.shipTypeString))
             {
                 string shipAction = myShip.action;
-                Debug.Log("Ship found in alive arry! " + ship.shipTypeString + " with action " + shipAction);
                 if (string.Equals(shipAction, "missileLeft"))
                 {
                     spriteRenderer.sprite = leftMissile;

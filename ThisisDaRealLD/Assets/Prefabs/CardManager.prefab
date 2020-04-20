@@ -51,7 +51,7 @@ MonoBehaviour:
   cardCollection: {fileID: 11400000, guid: 3dcc45d691dd30d4d992d6d7f6b483c4, type: 2}
   cardIndex: {fileID: 11400000, guid: 9a761f380f9102f4fa01a9fc2d2bf235, type: 2}
   playerShip: {fileID: 11400000, guid: 8080611786d3be849b2801cd8f04fecb, type: 2}
-  startHandSize: 5
+  startHandSize: 3
   maxHandSize: 5
   cardButtonList:
   - {fileID: 0}

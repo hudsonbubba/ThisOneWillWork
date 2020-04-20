@@ -27,8 +27,10 @@ public class SceneDebugger : MonoBehaviour
 
     public int playerStartSpeed;
     public int enemyStartSpeed;
+    public int startTargetDifficulty;
     public List<int> testDeck = new List<int>();
     public BoolVariable isFirstTurn;
+    public IntegerVariable targetDifficulty;
 
     public GameEvent startOfTurnEvent;
     public GameEvent updateArt;
@@ -70,6 +72,8 @@ public class SceneDebugger : MonoBehaviour
 
         // Reset card played tracker
         cardPlayed.SetValue(-1);
+
+        targetDifficulty.SetValue(startTargetDifficulty);
 
         // Grab positions of player and enemy from BoardState
         for (int row = 1; row < (officialBoardState.board.GetLength(0) - 1); row++)

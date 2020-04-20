@@ -67,6 +67,7 @@ public class Spawner : MonoBehaviour
         shipToSpawn.rowPosition = row;
         shipToSpawn.columnPosition = column;
         shipToSpawn.action = "";
+        shipToSpawn.speed = 1;
         shipToSpawn.isDead = false;
 
         return shipToSpawn.shipTypeString;

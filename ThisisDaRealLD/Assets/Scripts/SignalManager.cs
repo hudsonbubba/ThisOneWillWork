@@ -43,5 +43,6 @@ public class SignalManager : MonoBehaviour
         Debug.Log("Signal has reached the maximum. Reach max speed to get outta there!");
         filesTransmittedSO.Value++; // The UI will receive the signal complete event - Also the Dialogue should come saying yeah bb!
         signalCompleteSO.Raise();
+        signalSO.SetValue(0);
     }
 }
