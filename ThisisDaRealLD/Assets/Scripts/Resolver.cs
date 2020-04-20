@@ -9,14 +9,16 @@ public class Resolver : MonoBehaviour
 
     public Ship playerShip;
     public AliveEnemyList enemyShips;
+    public AliveEnemyList deadShips;
     public Ship missileShip;
 
     CardArtManager cardArtManager;
 
     // Events
-    public GameEvent startOfTurnEvent;
     public GameEvent endOfTurnEvent;
     public GameEvent enemyDestroyedEvent;
+    public GameEvent speedUpEvent;
+    public GameEvent slowDownEvent;
 
     public int MAX_SPEED;
     public int objectDamage;
@@ -104,15 +106,16 @@ public class Resolver : MonoBehaviour
         // Remove enemies from the alive list if they are marked as isDead
         for (int i = enemyShips.aliveList.Count - 1; i >= 0; i--)
         {
-            if (enemyShips.aliveList[i].isDead)
+            Ship enemy = enemyShips.aliveList[i];
+            if (enemy.isDead)
             {
-                enemyShips.aliveList.RemoveAt(i);
+                deadShips.aliveList.Add(enemy);
+                enemyShips.aliveList.Remove(enemy);
                 enemyDestroyedEvent.Raise();
             }
         }
 
         endOfTurnEvent.Raise();
-        startOfTurnEvent.Raise();
     }
 
     IEnumerator actionInterpreter(Ship ship, string optionalDirection = null)
@@ -189,6 +192,7 @@ public class Resolver : MonoBehaviour
         if (ship.speedTelegraph != MAX_SPEED)
         {
             ship.speedTelegraph++;
+            speedUpEvent.Raise(); // Only if actual and not telegraphing
         }
         else
         {
@@ -377,6 +381,7 @@ public class Resolver : MonoBehaviour
             playerShip.isDead = true;
             telegraphedBoardState.board[playerShip.rowPositionTelegraph, playerShip.columnPositionTelegraph] = "e";
         }
+        slowDownEvent.Raise(); // Only if actual and not telegraphing
     }
 
     void updateShip(Ship ship)

@@ -506,6 +506,17 @@ PrefabInstance:
       propertyPath: cardButtonList.Array.data[5]
       value: 
       objectReference: {fileID: 1570540676}
+    - target: {fileID: 8144470909060321536, guid: 198ea7a97b498fc40a61f767d6d9df04,
+        type: 3}
+      propertyPath: Event
+      value: 
+      objectReference: {fileID: 11400000, guid: 2cdec073a4ab030428e056f0169bdcd2,
+        type: 2}
+    - target: {fileID: 8144470909060321536, guid: 198ea7a97b498fc40a61f767d6d9df04,
+        type: 3}
+      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: e_endTurn
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 198ea7a97b498fc40a61f767d6d9df04, type: 3}
 --- !u!1 &155192652
@@ -5898,22 +5909,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 209820967, guid: a6d5fa39f6612f8458820ebb2ac84905, type: 3}
-      propertyPath: Response.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 209820967, guid: a6d5fa39f6612f8458820ebb2ac84905, type: 3}
-      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 209820967, guid: a6d5fa39f6612f8458820ebb2ac84905, type: 3}
-      propertyPath: Response.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2786818866842982352, guid: a6d5fa39f6612f8458820ebb2ac84905,
-        type: 3}
-      propertyPath: cardPlayed
+      propertyPath: Event
       value: 
-      objectReference: {fileID: 11400000, guid: 1a112118cd6926c4a8bed433e164032b,
+      objectReference: {fileID: 11400000, guid: b2519e34da90eee4eba2ba1652f4b0ae,
         type: 2}
     - target: {fileID: 2786818866842982352, guid: a6d5fa39f6612f8458820ebb2ac84905,
         type: 3}

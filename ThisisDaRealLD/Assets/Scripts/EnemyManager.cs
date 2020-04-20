@@ -80,10 +80,13 @@ public class EnemyManager : MonoBehaviour
 
         for (int i = 1; i <= shipSpeed; i++)
         {
-            string targetLocation = officialBoardState.board[shipRow, (shipColumn + i)];
-            if (string.Equals(targetLocation, "o"))
+            if (shipColumn + i <= officialBoardState.board.GetUpperBound(1))
             {
-                return avoidObstacleAction(shipRow);
+                string targetLocation = officialBoardState.board[shipRow, (shipColumn + i)];
+                if (string.Equals(targetLocation, "o"))
+                {
+                    return avoidObstacleAction(shipRow);
+                }
             }
         }
 

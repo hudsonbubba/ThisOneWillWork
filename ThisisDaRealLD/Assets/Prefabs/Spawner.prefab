@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2786818866842982355
+--- !u!1 &6323507375687473117
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,62 +8,62 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2786818866842982353}
-  - component: {fileID: 2786818866842982352}
-  - component: {fileID: 209820967}
+  - component: {fileID: 6323507375687473119}
+  - component: {fileID: 6323507375687473116}
+  - component: {fileID: 6567131747792778484}
   m_Layer: 0
-  m_Name: DebugManager
+  m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2786818866842982353
+--- !u!4 &6323507375687473119
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2786818866842982355}
+  m_GameObject: {fileID: 6323507375687473117}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.640025, y: -2.8932304, z: -2.7304688}
+  m_LocalPosition: {x: 762.5, y: 456, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2786818866842982352
+--- !u!114 &6323507375687473116
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2786818866842982355}
+  m_GameObject: {fileID: 6323507375687473117}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87c90bf4912fa0f4691d753deb360947, type: 3}
+  m_Script: {fileID: 11500000, guid: 6286a6d37c1ca62418768f2b74a873ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   officialBoardState: {fileID: 11400000, guid: e90488f4cd37fdd44a0b806a96e2aecb, type: 2}
-  playerShip: {fileID: 11400000, guid: 8080611786d3be849b2801cd8f04fecb, type: 2}
+  obstacleDifficulty: 1
+  enemyDifficulty: 2
+  targetDifficultyIncreasePerTurn: 1
+  catchUpAmount: 4
+  targetDifficulty: {fileID: 11400000, guid: 9fdf95b56daf3a9448e000ed502d139a, type: 2}
   aliveEnemyList: {fileID: 11400000, guid: d92c8a2b81395984f95376dda3a70693, type: 2}
   deadEnemyList: {fileID: 11400000, guid: 67132838bac4aa74cbe227c52c4e60b1, type: 2}
-  allEnemyList: {fileID: 11400000, guid: ebcdf3c19cda77c45969d52315d67441, type: 2}
-  enemyShip: {fileID: 11400000, guid: 18b4d5908ac78d045889d0a96298d60b, type: 2}
-  cardCollection: {fileID: 11400000, guid: 3dcc45d691dd30d4d992d6d7f6b483c4, type: 2}
-  cardPlayed: {fileID: 11400000, guid: 1a112118cd6926c4a8bed433e164032b, type: 2}
-  playerStartSpeed: 1
-  enemyStartSpeed: 1
-  testDeck: 00000000000000000100000001000000020000000200000003000000030000000400000004000000
-  startOfTurnEvent: {fileID: 11400000, guid: b2519e34da90eee4eba2ba1652f4b0ae, type: 2}
-  updateArt: {fileID: 11400000, guid: b4a70c8ebe0cc6040b8610ab77f92481, type: 2}
---- !u!114 &209820967
+  playerShip: {fileID: 11400000, guid: 8080611786d3be849b2801cd8f04fecb, type: 2}
+  enemyDestroyedEvent: {fileID: 11400000, guid: 419b426c094a6244b98946e4fc822f06,
+    type: 2}
+  updateArtEvent: {fileID: 11400000, guid: b4a70c8ebe0cc6040b8610ab77f92481, type: 2}
+  startTurnEvent: {fileID: 11400000, guid: b2519e34da90eee4eba2ba1652f4b0ae, type: 2}
+--- !u!114 &6567131747792778484
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2786818866842982355}
+  m_GameObject: {fileID: 6323507375687473117}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59bbb8fe6ec3fe743a134f49c3a118d2, type: 3}
@@ -73,8 +73,8 @@ MonoBehaviour:
   Response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2786818866842982352}
-        m_MethodName: e_printBoardState
+      - m_Target: {fileID: 6323507375687473116}
+        m_MethodName: e_createNewBoardState
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

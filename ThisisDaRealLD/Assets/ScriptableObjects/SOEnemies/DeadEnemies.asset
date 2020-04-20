@@ -10,11 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b276fa18ef9638a4c9227884fec3483c, type: 3}
-  m_Name: AliveEnemies
+  m_Name: DeadEnemies
   m_EditorClassIdentifier: 
-  DeveloperDescription: 'List containing all of the EnemyShip SO''s that
-
-    are
-    currently alive/on board'
-  aliveList:
-  - {fileID: 11400000, guid: 634de79618a4f184e88c4b18fc5b3f07, type: 2}
+  DeveloperDescription: 
+  aliveList: []
