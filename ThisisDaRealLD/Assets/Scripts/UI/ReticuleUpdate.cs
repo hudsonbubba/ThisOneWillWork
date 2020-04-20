@@ -15,38 +15,49 @@ public class ReticuleUpdate : MonoBehaviour
 
     private void Start()
     {
+        myChild = gameObject.transform.Find("ReticuleArt").gameObject;
+        myChild.SetActive(true);
+
         myShipString = GetComponent<MouseOverReticule>().myShipString;
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        myChild = gameObject.transform.Find("ReticuleArt").gameObject;
 
-        if(myShipString == "p")
+        if(string.Equals(myShipString, "p"))
         {
             spriteRenderer.sprite = playerReticule;
         }
         else
         {
             spriteRenderer.sprite = enemyReticule;
+            Debug.Log("Disabling ReticuleArt");
         }
+        myChild.SetActive(false);
+
     }
 
     public void e_updatePosition()
     {
+        bool found = false;
         for (int row = 0; row < telegraphedBoardState.board.GetLength(0); row++)
         {
             for (int column = 0; column < telegraphedBoardState.board.GetLength(1); column++)
             {
                 string indexValue = telegraphedBoardState.board[row, column];
+                Debug.Log(indexValue);
                 if (string.Equals(indexValue, myShipString))
                 {
+                    Debug.Log("Found in board state loop, enabled!");
                     myChild.SetActive(true);
                     transform.position = new Vector3(column * 2.4f, row * -1.73f, 0f); //THIS IS HOW IT SHOULD BE
+                    found = true;
+                    return;
                 }
-                else
-                {
-                    myChild.SetActive(false);
-                }
-             
             }
+        }
+
+        if (!found)
+        {
+            myChild.SetActive(false);
+            Debug.Log("Not found in board state loop, disabled");
         }
     }
 }

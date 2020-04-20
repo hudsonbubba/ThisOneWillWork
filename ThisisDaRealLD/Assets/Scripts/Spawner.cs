@@ -5,6 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public BoardState officialBoardState;
+    public BoardState fakeSlideBoardState;
     public int obstacleDifficulty;
     public int enemyDifficulty;
     public int targetDifficultyIncreasePerTurn;
@@ -28,7 +29,11 @@ public class Spawner : MonoBehaviour
         if (playerShip.columnPosition > 3)
         {
             columnsToAdd = playerShip.columnPosition - 3;
-            string[,] newBoard = shiftBoardState(columnsToAdd);
+            string[,] newBoard = shiftBoardState(columnsToAdd, false);
+
+            string[,] fakeSlideBoard = shiftBoardState(columnsToAdd, true);
+            fakeSlideBoardState.board = fakeSlideBoard;
+
             shiftShips(columnsToAdd);
 
             int randomNewRow = Random.Range(1, newBoard.GetUpperBound(0) - 1);
@@ -131,7 +136,7 @@ public class Spawner : MonoBehaviour
         targetDifficulty.SetValue(newTarget);
     }
 
-    string[,] shiftBoardState(int numColumns)
+    string[,] shiftBoardState(int numColumns, bool isFake)
     {
         string[,] newBoard = officialBoardState.board.Clone() as string[,];
 
@@ -147,7 +152,12 @@ public class Spawner : MonoBehaviour
                     }
                     else
                     {
-                        newBoard[i, j - numColumns] = "e";
+                        string replaceStr = "e";
+                        if (isFake)
+                        {
+                            replaceStr = "b";
+                        }
+                        newBoard[i, j - numColumns] = replaceStr;
                     }
                 }
                 else // Overwrite old row

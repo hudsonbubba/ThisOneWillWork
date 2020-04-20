@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   officialBoardState: {fileID: 11400000, guid: e90488f4cd37fdd44a0b806a96e2aecb, type: 2}
+  fakeSlideBoardState: {fileID: 11400000, guid: 2fd923246eb672b44a9dc6ba84787aa0,
+    type: 2}
   obstacleDifficulty: 1
   enemyDifficulty: 2
   targetDifficultyIncreasePerTurn: 1
