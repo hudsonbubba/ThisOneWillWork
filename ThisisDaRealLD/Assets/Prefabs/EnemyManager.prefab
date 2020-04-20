@@ -47,6 +47,8 @@ MonoBehaviour:
   officialBoardState: {fileID: 11400000, guid: e90488f4cd37fdd44a0b806a96e2aecb, type: 2}
   aliveEnemyList: {fileID: 11400000, guid: d92c8a2b81395984f95376dda3a70693, type: 2}
   playerShip: {fileID: 11400000, guid: 8080611786d3be849b2801cd8f04fecb, type: 2}
+  initialPreviewEvent: {fileID: 11400000, guid: efea6fbac8fc7fc49af1f57a30415ca2,
+    type: 2}
 --- !u!114 &700323696
 MonoBehaviour:
   m_ObjectHideFlags: 0

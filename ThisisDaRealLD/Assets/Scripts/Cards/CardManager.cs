@@ -20,6 +20,7 @@ public class CardManager : MonoBehaviour
     public GameEvent cardDrawnEvent;
     public GameEvent reshuffleDiscardEvent;
     public GameEvent previewCardEvent;
+    public GameEvent commitTurnEvent;
 
     void Start()
     {
@@ -63,23 +64,46 @@ public class CardManager : MonoBehaviour
         cardDrawnEvent.Raise();
     }
 
+    public void e_initialPreview()
+    {
+        handIndexPlayed.SetValue(-1);
+        e_previewCard();
+    }
+    
     public void e_previewCard()
     {
         int handIndex = handIndexPlayed.Value;
-        if (handIndex == -1) // Pass Turn
+        if (handIndex == -1)
         {
             playerShip.action = "";
             previewCardEvent.Raise();
         } 
-        else // Play Card
+        else
         {
             int cardToPreview = cardCollection.hand[handIndex];
             string cardAction = cardIndex.array[cardToPreview];
             playerShip.action = cardAction;
             previewCardEvent.Raise();
+        }
+    }
+
+    public void e_commitCard()
+    {
+        int handIndex = handIndexPlayed.Value;
+        if (handIndex == -1) // Pass Turn
+        {
+            playerShip.action = "";
+            commitTurnEvent.Raise();
+        }
+        else // Play Card
+        {
+            int cardToCommit = cardCollection.hand[handIndex];
+            string cardAction = cardIndex.array[cardToCommit];
+            playerShip.action = cardAction;
+            commitTurnEvent.Raise();
 
             cardCollection.hand.RemoveAt(handIndex);
-            discardCard(cardToPreview);
+            discardCard(cardToCommit);
         }
         handIndexPlayed.SetValue(-1);
     }

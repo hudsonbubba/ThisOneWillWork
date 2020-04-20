@@ -13,12 +13,14 @@ public class Resolver : MonoBehaviour
     public Ship missileShip;
 
     CardArtManager cardArtManager;
+    TurnPredictor turnPredictor;
 
     // Events
     public GameEvent endOfTurnEvent;
     public GameEvent enemyDestroyedEvent;
     public GameEvent speedUpEvent;
     public GameEvent slowDownEvent;
+    public GameEvent updateReticules;
 
     public int MAX_SPEED;
     public int objectDamage;
@@ -30,15 +32,25 @@ public class Resolver : MonoBehaviour
     private int animCounter = 0;
     private int animCounterMax = 2;
 
+    private bool isCommit = false;
+
     void Start()
     {
         MAX_ROWS = officialBoardState.board.GetLength(0);
         MAX_COLUMNS = officialBoardState.board.GetLength(1);
         cardArtManager = GameObject.Find("CardArtManager").GetComponent<CardArtManager>();
+        turnPredictor = GameObject.Find("TurnPredictor").GetComponent<TurnPredictor>();
     }
 
     public void e_previewEventCatcher()
     {
+        isCommit = false;
+        StartCoroutine(previewTurn());
+    }
+
+    public void e_commitTurnEventCatcher()
+    {
+        isCommit = true;
         StartCoroutine(previewTurn());
     }
     public IEnumerator previewTurn()
@@ -83,10 +95,18 @@ public class Resolver : MonoBehaviour
                 }
             }
         }
-        e_commitTurn();
+
+        if (isCommit)
+        {
+            commitTurn();
+        }
+        else
+        {
+            updateReticules.Raise();
+        }
     }
 
-    public void e_commitTurn()
+    void commitTurn()
     {
         officialBoardState.board = telegraphedBoardState.board.Clone() as string[,];
 
@@ -192,7 +212,10 @@ public class Resolver : MonoBehaviour
         if (ship.speedTelegraph != MAX_SPEED)
         {
             ship.speedTelegraph++;
-            speedUpEvent.Raise(); // Only if actual and not telegraphing
+            if (isCommit)
+            {
+                speedUpEvent.Raise();
+            }
         }
         else
         {
@@ -264,7 +287,12 @@ public class Resolver : MonoBehaviour
                     if (string.Equals(shipString, "p")) // Player hits boundary
                     {
                         // You die, game over
-                        ship.isDead = true;
+                        // ship.isDead = true;
+                        telegraphedBoardState.board[targetRow, targetColumn] = shipString;
+
+                        ship.rowPositionTelegraph = targetRow;
+                        ship.columnPositionTelegraph = targetColumn;
+                        takeDamage(10);
                     }
                     else if (shipString[0].Equals('s') || shipString[0].Equals('m')) // Enemy hits boundary (or missile, technically not possible now but maybe later)
                     {
@@ -335,7 +363,16 @@ public class Resolver : MonoBehaviour
             // All actions require clearing the previous space unless it is the first movement of a missile
             telegraphedBoardState.board[shipRow, shipColumn] = "e";
         }
-        yield return StartCoroutine(updateArt(shipRow, shipColumn, targetRow, targetColumn, direction, shipString, targetString, ship.isDead));
+
+        if (isCommit)
+        {
+            yield return StartCoroutine(updateArt(shipRow, shipColumn, targetRow, targetColumn, direction, shipString, targetString, ship.isDead));
+        }
+        else
+        {
+            turnPredictor.appendPos(shipString, targetRow, targetColumn);
+            yield break;
+        }
     }
 
     IEnumerator updateArt(int shipRow, int shipColumn, int targetRow, int targetColumn, string direction, string shipString, string targetString, bool isDead)
@@ -379,9 +416,13 @@ public class Resolver : MonoBehaviour
         if (playerShip.speedTelegraph <= 0)
         {
             playerShip.isDead = true;
-            telegraphedBoardState.board[playerShip.rowPositionTelegraph, playerShip.columnPositionTelegraph] = "e";
         }
-        slowDownEvent.Raise(); // Only if actual and not telegraphing
+        
+        if (isCommit)
+        {
+            telegraphedBoardState.board[playerShip.rowPositionTelegraph, playerShip.columnPositionTelegraph] = "e";
+            slowDownEvent.Raise();
+        }
     }
 
     void updateShip(Ship ship)

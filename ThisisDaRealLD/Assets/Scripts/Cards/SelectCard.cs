@@ -7,6 +7,7 @@ public class SelectCard : MonoBehaviour
 {
     public IntegerVariable playedCard;
     public GameEvent resetSelectionEvent;
+    public GameEvent cardSelectedEvent;
 
     private bool isSelected = false;
 
@@ -30,6 +31,8 @@ public class SelectCard : MonoBehaviour
             resetSelectionEvent.Raise();
             playedCard.SetValue(-1);
         }
+
+        cardSelectedEvent.Raise();
     }
 
     public void e_resetSelection()

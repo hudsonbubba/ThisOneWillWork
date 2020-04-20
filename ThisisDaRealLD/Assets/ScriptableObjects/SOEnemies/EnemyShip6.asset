@@ -13,7 +13,12 @@ MonoBehaviour:
   m_Name: EnemyShip6
   m_EditorClassIdentifier: 
   DeveloperDescription: 
-  rowPosition: 0
-  columnPosition: 0
-  action: 
+  rowPosition: 1
+  columnPosition: 7
+  rowPositionTelegraph: 1
+  columnPositionTelegraph: 9
+  action: down
+  speed: 1
+  speedTelegraph: 1
   shipTypeString: s6
+  isDead: 0

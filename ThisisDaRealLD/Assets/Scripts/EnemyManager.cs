@@ -8,12 +8,15 @@ public class EnemyManager : MonoBehaviour
     public AliveEnemyList aliveEnemyList;
     public Ship playerShip;
 
+    public GameEvent initialPreviewEvent;
+
     public void e_chooseEnemyActions()
     {
         foreach (Ship enemy in aliveEnemyList.aliveList)
         {
             enemy.action = chooseAction(enemy);
         }
+        initialPreviewEvent.Raise();
     }
 
     string chooseAction(Ship ship)
@@ -116,19 +119,4 @@ public class EnemyManager : MonoBehaviour
         }
         return chosenAction;
     }
-
-    /*int getRowPosition()
-    {
-        return enemyShipSO.rowPosition;
-    }
-
-    int getColumnPosition()
-    {
-        return enemyShipSO.columnPosition;
-    }
-
-    void declareAction(string actionName)
-    {
-        enemyShipSO.action = actionName;
-    }*/
 }

@@ -187,6 +187,7 @@ MonoBehaviour:
   playedCard: {fileID: 11400000, guid: 1a112118cd6926c4a8bed433e164032b, type: 2}
   resetSelectionEvent: {fileID: 11400000, guid: a1ea33f3a0cfd664595190e0ba91324a,
     type: 2}
+  cardSelectedEvent: {fileID: 11400000, guid: f882efd9996b2f34fb5a31423d19e70e, type: 2}
 --- !u!114 &5364991499591134376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,6 +361,7 @@ MonoBehaviour:
   playedCard: {fileID: 11400000, guid: 1a112118cd6926c4a8bed433e164032b, type: 2}
   resetSelectionEvent: {fileID: 11400000, guid: a1ea33f3a0cfd664595190e0ba91324a,
     type: 2}
+  cardSelectedEvent: {fileID: 11400000, guid: f882efd9996b2f34fb5a31423d19e70e, type: 2}
 --- !u!114 &5364991499633278417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -610,6 +612,7 @@ MonoBehaviour:
   playedCard: {fileID: 11400000, guid: 1a112118cd6926c4a8bed433e164032b, type: 2}
   resetSelectionEvent: {fileID: 11400000, guid: a1ea33f3a0cfd664595190e0ba91324a,
     type: 2}
+  cardSelectedEvent: {fileID: 11400000, guid: f882efd9996b2f34fb5a31423d19e70e, type: 2}
 --- !u!114 &5364991499857519701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -860,6 +863,7 @@ MonoBehaviour:
   playedCard: {fileID: 11400000, guid: 1a112118cd6926c4a8bed433e164032b, type: 2}
   resetSelectionEvent: {fileID: 11400000, guid: a1ea33f3a0cfd664595190e0ba91324a,
     type: 2}
+  cardSelectedEvent: {fileID: 11400000, guid: f882efd9996b2f34fb5a31423d19e70e, type: 2}
 --- !u!114 &5364991500628476825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1033,6 +1037,7 @@ MonoBehaviour:
   playedCard: {fileID: 11400000, guid: 1a112118cd6926c4a8bed433e164032b, type: 2}
   resetSelectionEvent: {fileID: 11400000, guid: a1ea33f3a0cfd664595190e0ba91324a,
     type: 2}
+  cardSelectedEvent: {fileID: 11400000, guid: f882efd9996b2f34fb5a31423d19e70e, type: 2}
 --- !u!114 &5364991500634857935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1283,6 +1288,7 @@ MonoBehaviour:
   playedCard: {fileID: 11400000, guid: 1a112118cd6926c4a8bed433e164032b, type: 2}
   resetSelectionEvent: {fileID: 11400000, guid: a1ea33f3a0cfd664595190e0ba91324a,
     type: 2}
+  cardSelectedEvent: {fileID: 11400000, guid: f882efd9996b2f34fb5a31423d19e70e, type: 2}
 --- !u!114 &5364991501092898565
 MonoBehaviour:
   m_ObjectHideFlags: 0

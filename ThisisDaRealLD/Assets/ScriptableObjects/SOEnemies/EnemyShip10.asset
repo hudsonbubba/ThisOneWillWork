@@ -15,5 +15,10 @@ MonoBehaviour:
   DeveloperDescription: 
   rowPosition: 0
   columnPosition: 0
+  rowPositionTelegraph: 0
+  columnPositionTelegraph: 0
   action: 
+  speed: 1
+  speedTelegraph: 0
   shipTypeString: s10
+  isDead: 0

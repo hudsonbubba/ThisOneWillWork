@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 7446770726469598237}
   - component: {fileID: 594933119}
   - component: {fileID: 8144470909060321536}
+  - component: {fileID: 1636306553}
+  - component: {fileID: 6696667504102702260}
   m_Layer: 0
   m_Name: CardManager
   m_TagString: Untagged
@@ -63,6 +65,7 @@ MonoBehaviour:
   reshuffleDiscardEvent: {fileID: 11400000, guid: 54ccd74564403bc4a9c275dd91280f0f,
     type: 2}
   previewCardEvent: {fileID: 11400000, guid: 7e5ee337c8483c848b79f03bcaba41f3, type: 2}
+  commitTurnEvent: {fileID: 11400000, guid: 106e3f84beb9e4a41995032188ddff63, type: 2}
 --- !u!114 &594933119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,7 +83,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7446770726469598237}
-        m_MethodName: e_previewCard
+        m_MethodName: e_commitCard
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -102,12 +105,66 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59bbb8fe6ec3fe743a134f49c3a118d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: b2519e34da90eee4eba2ba1652f4b0ae, type: 2}
+  Event: {fileID: 11400000, guid: 2cdec073a4ab030428e056f0169bdcd2, type: 2}
   Response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7446770726469598237}
-        m_MethodName: e_startTurn
+        m_MethodName: e_endTurn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1636306553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7446770726469598236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59bbb8fe6ec3fe743a134f49c3a118d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: f882efd9996b2f34fb5a31423d19e70e, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7446770726469598237}
+        m_MethodName: e_previewCard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6696667504102702260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7446770726469598236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59bbb8fe6ec3fe743a134f49c3a118d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: efea6fbac8fc7fc49af1f57a30415ca2, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7446770726469598237}
+        m_MethodName: e_initialPreview
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

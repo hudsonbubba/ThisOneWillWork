@@ -28,7 +28,7 @@ public class ReticuleUpdate : MonoBehaviour
 
     public void e_updatePosition()
     {
-        for (int row = 1; row < (telegraphedBoardState.board.GetLength(0) - 1); row++)
+        for (int row = 0; row < telegraphedBoardState.board.GetLength(0); row++)
         {
             for (int column = 0; column < telegraphedBoardState.board.GetLength(1); column++)
             {
