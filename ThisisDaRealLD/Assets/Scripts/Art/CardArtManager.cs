@@ -22,8 +22,8 @@ public class CardArtManager : MonoBehaviour
 
     public Ship playerShip;
 
-    string currentState;
-    string currentStateSlide;
+    //string currentState;
+    //string currentStateSlide;
 
     // Start is called before the first frame update
     void Awake()
@@ -47,7 +47,7 @@ public class CardArtManager : MonoBehaviour
 
     public void e_UpdateBoard ()
     {
-        //string currentState; - defined globally
+        string currentState = "";
         for (int i = 0; i < cards.GetLength(0); i++)
         {
             for (int j = 0; j < cards.GetLength(1); j++)
@@ -62,14 +62,8 @@ public class CardArtManager : MonoBehaviour
     public void e_UpdateSlideBoard()
     {
 
-        for (int i = 0; i < cards.GetLength(0); i++)
-        {
-            for (int j = 0; j < cards.GetLength(1); j++)
-            {
-                //cards[i, j] = cardList[z];
-                currentState = boardStateActual.board[i, j];
-            }
-        }
+        string currentState = "";
+        string currentStateSlide = "";
 
         //string currentState;
         for (int i = 0; i < cards.GetLength(0); i++)
@@ -77,6 +71,7 @@ public class CardArtManager : MonoBehaviour
             for (int j = 0; j < cards.GetLength(1); j++)
             {
                 //cards[i, j] = cardList[z];
+                currentState = boardStateActual.board[i, j];
                 currentStateSlide = boardSlideState.board[i, j];
                 cards[i, j].GetComponent<CardArt>().setState(currentStateSlide);
                 if (currentStateSlide == "b")
