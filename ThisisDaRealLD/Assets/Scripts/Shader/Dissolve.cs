@@ -40,11 +40,13 @@ public class Dissolve : MonoBehaviour
     public void e_FadeOut()
     {
         isDissolving = true;
+        matDissolve.SetFloat("_Fade", 1);
     }
 
     public void e_ReAppear()
     {
         matDissolve.SetFloat("_Fade", 1);
+        fade = 1;
         spriteRenderer.material = matDefault;
     }
 
