@@ -7871,7 +7871,6 @@ MonoBehaviour:
   slideSpeed: 2.3
   camSlideEnd: {fileID: 11400000, guid: 033b3c13b5a67904cb8f417102525f94, type: 2}
   playerShipSO: {fileID: 11400000, guid: 8080611786d3be849b2801cd8f04fecb, type: 2}
-  playerSpeed: 0
 --- !u!1001 &1665934836
 PrefabInstance:
   m_ObjectHideFlags: 0
