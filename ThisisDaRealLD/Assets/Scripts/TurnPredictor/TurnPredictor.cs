@@ -5,27 +5,36 @@ using UnityEngine;
 public class TurnPredictor : MonoBehaviour
 {
     public BoardCoords boardCoords;
+    public StringVariable ReticuleShipString;
 
     public List<GameObject> cardList = new List<GameObject>();
 
-    public List<Vector3> playerPos = new List<Vector3>();
-    public List<Vector3> s1Pos = new List<Vector3>();
-    public List<Vector3> s2Pos = new List<Vector3>();
-    public List<Vector3> s3Pos = new List<Vector3>();
-    public List<Vector3> s4Pos = new List<Vector3>();
-    public List<Vector3> s5Pos = new List<Vector3>();
-    public List<Vector3> s6Pos = new List<Vector3>();
-    public List<Vector3> s7Pos = new List<Vector3>();
-    public List<Vector3> s8Pos = new List<Vector3>();
-    public List<Vector3> s9Pos = new List<Vector3>();
-    public List<Vector3> s10Pos = new List<Vector3>();
+    List<Vector2> playerPos = new List<Vector2>();
+    List<Vector2> s1Pos = new List<Vector2>();
+    List<Vector2> s2Pos = new List<Vector2>();
+    List<Vector2> s3Pos = new List<Vector2>();
+    List<Vector2> s4Pos = new List<Vector2>();
+    List<Vector2> s5Pos = new List<Vector2>();
+    List<Vector2> s6Pos = new List<Vector2>();
+    List<Vector2> s7Pos = new List<Vector2>();
+    List<Vector2> s8Pos = new List<Vector2>();
+    List<Vector2> s9Pos = new List<Vector2>();
+    List<Vector2> s10Pos = new List<Vector2>();
+    List<Vector2> debugPos = new List<Vector2>();
+
+    Dictionary<string, List<Vector2>> predictorDic = new Dictionary<string, List<Vector2>>();
 
     public const int rows = 5;
     public const int columns = 10;
     public GameObject[,] cardsObjs = new GameObject[rows, columns];
 
     public int[,] savedPos = new int[rows, columns];
-    public string shipString;
+    public string shipStringToDisplay;
+
+    Ray ray;
+    RaycastHit hit;
+
+    LineRenderer lineRenderer;
 
     //public List<Vector3> savedPos1 = new List<Vector3>();
 
@@ -56,19 +65,32 @@ public class TurnPredictor : MonoBehaviour
                 boardCoords.board[i, j] = cardsObjs[i, j].GetComponent<Transform>().position;
             }
         }
-        /*
-        Dictionary<string, List<Vector3>> predictorDic = new Dictionary<string, List<Vector3>>()
-        {
-            {"s1",  }
-            //INITILAIZE DIC HERE
-        }
-        */
+
+        InitDict();
+
+        lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.enabled = false;
+
     }
 
    
-   
+   void InitDict()
+    {
 
+        predictorDic.Add("p", playerPos);
+        predictorDic.Add("s1", s1Pos);
+        predictorDic.Add("s2", s2Pos);
+        predictorDic.Add("s3", s3Pos);
+        predictorDic.Add("s4", s4Pos);
+        predictorDic.Add("s5", s5Pos);
+        predictorDic.Add("s6", s6Pos);
+        predictorDic.Add("s7", s7Pos);
+        predictorDic.Add("s8", s8Pos);
+        predictorDic.Add("s9", s9Pos);
+        predictorDic.Add("s10", s10Pos);
+        predictorDic.Add("debugPos", debugPos);
 
+    }
 
     // Update is called once per frame
     void Update()
@@ -76,15 +98,43 @@ public class TurnPredictor : MonoBehaviour
         
     }
 
-    /*
-    public void appendPos(string shipString, int target)
+    public void e_displayLine()
     {
-        if (!predictorDic.ContainsKey(shipString)) // If the key does not exist, add it and append first value
+        List<Vector2> tempList = new List<Vector2>();
+        shipStringToDisplay = ReticuleShipString.Value;
+        if (predictorDic.TryGetValue(shipStringToDisplay, out tempList))
         {
-            //predictorDic.Add(shipString, new List)
+            lineRenderer.positionCount = tempList.Count;
+            for (int i = 0; i < tempList.Count; i++)
+            {
+                Vector3 tempVector3 = new Vector3(tempList[i].y, tempList[i].x, 0f);
+                lineRenderer.SetPosition(i, tempVector3);
+            }
+        }
+        else
+        {
+            Debug.LogError("Couldn't find in Dictionary");
+        }
+        lineRenderer.enabled = true;
+    }
 
+    public void e_stopLine()
+    {
+        lineRenderer.enabled = false;
+    }
+
+    public void appendPos(string shipString, int targetRow, int targetCol) // To be called by the resolver
+    {
+        List<Vector2> temp = new List<Vector2>();
+        if(predictorDic.TryGetValue(shipString, out temp))
+        {
+            Vector2 tempVector2 = new Vector2(targetCol*-1.73f, targetRow * 2.4f); //just how far apart the cards are 
+            temp.Add(tempVector2);
+        } else
+        {
+            Debug.LogError("Dictionary did not contain value for: " + shipString);
         }
   
     }
-    */
+
 }
