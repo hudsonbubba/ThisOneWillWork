@@ -28,7 +28,6 @@ public class ReticuleUpdate : MonoBehaviour
         else
         {
             spriteRenderer.sprite = enemyReticule;
-            Debug.Log("Disabling ReticuleArt");
         }
         myChild.SetActive(false);
 
@@ -45,7 +44,6 @@ public class ReticuleUpdate : MonoBehaviour
                 Debug.Log(indexValue);
                 if (string.Equals(indexValue, myShipString))
                 {
-                    Debug.Log("Found in board state loop, enabled!");
                     myChild.SetActive(true);
                     transform.position = new Vector3(column * 2.4f, row * -1.73f, 0f); //THIS IS HOW IT SHOULD BE
                     found = true;
@@ -57,7 +55,6 @@ public class ReticuleUpdate : MonoBehaviour
         if (!found)
         {
             myChild.SetActive(false);
-            Debug.Log("Not found in board state loop, disabled");
         }
     }
 }

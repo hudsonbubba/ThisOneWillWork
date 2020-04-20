@@ -433,11 +433,9 @@ public class Resolver : MonoBehaviour
     
     public void e_animationDone()
     {
-        Debug.Log("An Animation finished!");
         animCounter++;
         if (animCounter >= animCounterMax)
         {
-            Debug.Log("All animations done!");
             animCounter = 0;
             animDone = true;
         }
@@ -445,7 +443,6 @@ public class Resolver : MonoBehaviour
 
     void takeDamage(int damageAmount, string damageReason)
     {
-        Debug.Log("Damage taken!");
         playerShip.speedTelegraph -= damageAmount;
 
         if (playerShip.speedTelegraph <= 0)

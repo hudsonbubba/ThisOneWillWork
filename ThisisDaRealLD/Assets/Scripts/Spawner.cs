@@ -148,7 +148,12 @@ public class Spawner : MonoBehaviour
                 {
                     if (i == 0 || i == (newBoard.GetLength(0) - 1))
                     {
-                        newBoard[i, j - numColumns] = "x";
+                        string replaceStr = "x";
+                        if (isFake)
+                        {
+                            replaceStr = "b";
+                        }
+                        newBoard[i, j - numColumns] = replaceStr;
                     }
                     else
                     {
