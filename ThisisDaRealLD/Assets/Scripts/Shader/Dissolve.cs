@@ -5,20 +5,26 @@ using UnityEngine;
 public class Dissolve : MonoBehaviour
 {
 
-    Material mat;
+    public Material matDissolve;
+    Material matDefault;
+
+    SpriteRenderer spriteRenderer;
 
     bool isDissolving = false;
     float fade = 1f;
 
     private void Start()
     {
-        mat = GetComponent<SpriteRenderer>().material;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        matDefault = spriteRenderer.material;
     }
 
     private void Update()
     {
         if (isDissolving)
         {
+            spriteRenderer.material = matDissolve;
+
             fade -= Time.deltaTime;
 
             if (fade <= 0f)
@@ -27,13 +33,19 @@ public class Dissolve : MonoBehaviour
                 isDissolving = false;
             }
 
-            mat.SetFloat("_Fade", fade);
+            matDissolve.SetFloat("_Fade", fade);
         }
     }
 
     public void e_FadeOut()
     {
         isDissolving = true;
+    }
+
+    public void e_ReAppear()
+    {
+        matDissolve.SetFloat("_Fade", 1);
+        spriteRenderer.material = matDefault;
     }
 
 }
