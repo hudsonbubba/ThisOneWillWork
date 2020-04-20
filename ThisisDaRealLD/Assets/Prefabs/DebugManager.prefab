@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 209820967}
   - component: {fileID: 837671266}
   - component: {fileID: 301680637312834246}
+  - component: {fileID: 166035990131442341}
   m_Layer: 0
   m_Name: DebugManager
   m_TagString: Untagged
@@ -57,6 +58,7 @@ MonoBehaviour:
   playerStartSpeed: 1
   enemyStartSpeed: 1
   testDeck: 00000000000000000100000001000000020000000200000003000000030000000400000004000000
+  isFirstTurn: {fileID: 11400000, guid: 83920e725581cb84f9ff65649630ec1c, type: 2}
   startOfTurnEvent: {fileID: 11400000, guid: b2519e34da90eee4eba2ba1652f4b0ae, type: 2}
   updateArt: {fileID: 11400000, guid: b4a70c8ebe0cc6040b8610ab77f92481, type: 2}
 --- !u!114 &209820967
@@ -114,6 +116,33 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &301680637312834246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2786818866842982355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59bbb8fe6ec3fe743a134f49c3a118d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: bf46f71ed819ba441a775f1f6c10a301, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2786818866842982352}
+        m_MethodName: e_printBoardCoords
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &166035990131442341
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

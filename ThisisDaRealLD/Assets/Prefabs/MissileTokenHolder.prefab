@@ -130,6 +130,7 @@ MonoBehaviour:
   leftMissile: {fileID: 21300000, guid: 769c3a719f1cad2439603591d38c0caa, type: 3}
   rightMissile: {fileID: 21300000, guid: 7ae6ddf50ae3660438cbeffab78afc19, type: 3}
   myShip: {fileID: 11400000, guid: 0e7ef8fef6967724aa179ce289b41c4c, type: 2}
+  aliveEnemyList: {fileID: 11400000, guid: d92c8a2b81395984f95376dda3a70693, type: 2}
 --- !u!114 &4038048658045837824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,6 +407,7 @@ MonoBehaviour:
   leftMissile: {fileID: 21300000, guid: 769c3a719f1cad2439603591d38c0caa, type: 3}
   rightMissile: {fileID: 21300000, guid: 7ae6ddf50ae3660438cbeffab78afc19, type: 3}
   myShip: {fileID: 11400000, guid: 34ac8ceab35c121429cce56a1f5ef213, type: 2}
+  aliveEnemyList: {fileID: 11400000, guid: d92c8a2b81395984f95376dda3a70693, type: 2}
 --- !u!114 &1552894990184676547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -520,6 +522,7 @@ MonoBehaviour:
   leftMissile: {fileID: 21300000, guid: 769c3a719f1cad2439603591d38c0caa, type: 3}
   rightMissile: {fileID: 21300000, guid: 7ae6ddf50ae3660438cbeffab78afc19, type: 3}
   myShip: {fileID: 11400000, guid: bb257c0823b0c8649b1eabbe0f247e72, type: 2}
+  aliveEnemyList: {fileID: 11400000, guid: d92c8a2b81395984f95376dda3a70693, type: 2}
 --- !u!114 &211627669776136166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -634,6 +637,7 @@ MonoBehaviour:
   leftMissile: {fileID: 21300000, guid: 769c3a719f1cad2439603591d38c0caa, type: 3}
   rightMissile: {fileID: 21300000, guid: 7ae6ddf50ae3660438cbeffab78afc19, type: 3}
   myShip: {fileID: 11400000, guid: 634de79618a4f184e88c4b18fc5b3f07, type: 2}
+  aliveEnemyList: {fileID: 11400000, guid: d92c8a2b81395984f95376dda3a70693, type: 2}
 --- !u!114 &992601314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1153,6 +1157,7 @@ MonoBehaviour:
   leftMissile: {fileID: 21300000, guid: 769c3a719f1cad2439603591d38c0caa, type: 3}
   rightMissile: {fileID: 21300000, guid: 7ae6ddf50ae3660438cbeffab78afc19, type: 3}
   myShip: {fileID: 11400000, guid: ae8e77226828d304abe8c02074e8b9e8, type: 2}
+  aliveEnemyList: {fileID: 11400000, guid: d92c8a2b81395984f95376dda3a70693, type: 2}
 --- !u!114 &65213459438858026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1267,6 +1272,7 @@ MonoBehaviour:
   leftMissile: {fileID: 21300000, guid: 769c3a719f1cad2439603591d38c0caa, type: 3}
   rightMissile: {fileID: 21300000, guid: 7ae6ddf50ae3660438cbeffab78afc19, type: 3}
   myShip: {fileID: 11400000, guid: 5c73ffc74b864994e9b217e2881ec86d, type: 2}
+  aliveEnemyList: {fileID: 11400000, guid: d92c8a2b81395984f95376dda3a70693, type: 2}
 --- !u!114 &4998321967365511227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1381,6 +1387,7 @@ MonoBehaviour:
   leftMissile: {fileID: 21300000, guid: 769c3a719f1cad2439603591d38c0caa, type: 3}
   rightMissile: {fileID: 21300000, guid: 7ae6ddf50ae3660438cbeffab78afc19, type: 3}
   myShip: {fileID: 11400000, guid: 0038b1a215c92d548888ee087d09ed57, type: 2}
+  aliveEnemyList: {fileID: 11400000, guid: d92c8a2b81395984f95376dda3a70693, type: 2}
 --- !u!114 &939775899432432141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1576,6 +1583,7 @@ MonoBehaviour:
   leftMissile: {fileID: 21300000, guid: 769c3a719f1cad2439603591d38c0caa, type: 3}
   rightMissile: {fileID: 21300000, guid: 7ae6ddf50ae3660438cbeffab78afc19, type: 3}
   myShip: {fileID: 11400000, guid: c249e453ac4e42941b26d052a382b67d, type: 2}
+  aliveEnemyList: {fileID: 11400000, guid: d92c8a2b81395984f95376dda3a70693, type: 2}
 --- !u!114 &1291715072968119064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1811,6 +1819,7 @@ MonoBehaviour:
   leftMissile: {fileID: 21300000, guid: 769c3a719f1cad2439603591d38c0caa, type: 3}
   rightMissile: {fileID: 21300000, guid: 7ae6ddf50ae3660438cbeffab78afc19, type: 3}
   myShip: {fileID: 11400000, guid: 18b4d5908ac78d045889d0a96298d60b, type: 2}
+  aliveEnemyList: {fileID: 11400000, guid: d92c8a2b81395984f95376dda3a70693, type: 2}
 --- !u!114 &8425431479723499718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1925,6 +1934,7 @@ MonoBehaviour:
   leftMissile: {fileID: 21300000, guid: 769c3a719f1cad2439603591d38c0caa, type: 3}
   rightMissile: {fileID: 21300000, guid: 7ae6ddf50ae3660438cbeffab78afc19, type: 3}
   myShip: {fileID: 11400000, guid: 23ad136fef4c1eb4d8fa7a6375fcbf57, type: 2}
+  aliveEnemyList: {fileID: 11400000, guid: d92c8a2b81395984f95376dda3a70693, type: 2}
 --- !u!114 &4422876349737555536
 MonoBehaviour:
   m_ObjectHideFlags: 0

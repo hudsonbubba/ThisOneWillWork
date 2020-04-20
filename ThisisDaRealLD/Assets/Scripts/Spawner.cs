@@ -49,7 +49,7 @@ public class Spawner : MonoBehaviour
             newBoard[randomNewRow, randomNewColumn] = itemToSpawn(randomNewRow, randomNewColumn, shipsAvailable);
 
             officialBoardState.board = newBoard;
-            updateArtEvent.Raise();
+            // updateArtEvent.Raise();
         }
         else
         {

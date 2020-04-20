@@ -41,7 +41,6 @@ public class ReticuleUpdate : MonoBehaviour
             for (int column = 0; column < telegraphedBoardState.board.GetLength(1); column++)
             {
                 string indexValue = telegraphedBoardState.board[row, column];
-                Debug.Log(indexValue);
                 if (string.Equals(indexValue, myShipString))
                 {
                     myChild.SetActive(true);

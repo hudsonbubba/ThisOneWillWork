@@ -7,7 +7,8 @@ public class EnemyManager : MonoBehaviour
     public BoardState officialBoardState;
     public AliveEnemyList aliveEnemyList;
     public Ship playerShip;
-
+    public BoolVariable isFirstTurn;
+    public GameEvent boardSlideStartEvent;
     public GameEvent initialPreviewEvent;
 
     public void e_chooseEnemyActions()
@@ -16,7 +17,16 @@ public class EnemyManager : MonoBehaviour
         {
             enemy.action = chooseAction(enemy);
         }
-        initialPreviewEvent.Raise();
+        
+        
+        if (isFirstTurn.Value)
+        {
+            initialPreviewEvent.Raise();
+        }
+        else
+        {
+            boardSlideStartEvent.Raise();
+        }
     }
 
     string chooseAction(Ship ship)

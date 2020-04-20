@@ -9,6 +9,7 @@ public class MissileTokenUpdate : MonoBehaviour
     public Sprite leftMissile;
     public Sprite rightMissile;
     public Ship myShip;
+    public AliveEnemyList aliveEnemyList;
 
     GameObject myChild;
 
@@ -20,29 +21,34 @@ public class MissileTokenUpdate : MonoBehaviour
 
     public void e_updateMissileToken()
     {
-        if (!myShip.isDead)
+        foreach (Ship ship in aliveEnemyList.aliveList)
         {
-            string shipAction = myShip.action;
-            if (string.Equals(shipAction, "missileLeft"))
+            Debug.Log("Checking " + myShip.shipTypeString + " against " + ship.shipTypeString);
+            if (string.Equals(ship.shipTypeString, myShip.shipTypeString))
             {
-                spriteRenderer.sprite = leftMissile;
-                myChild.SetActive(true);
-                transform.position = new Vector3((myShip.columnPosition * 2.4f) - 1.2f, myShip.rowPosition * -1.73f, 0f);
-            }
-            else if (string.Equals(shipAction, "missileRight"))
-            {
-                spriteRenderer.sprite = rightMissile;
-                myChild.SetActive(true);
-                transform.position = new Vector3((myShip.columnPosition * 2.4f) + 1.2f, myShip.rowPosition * -1.73f, 0f);
+                string shipAction = myShip.action;
+                Debug.Log("Ship found in alive arry! " + ship.shipTypeString + " with action " + shipAction);
+                if (string.Equals(shipAction, "missileLeft"))
+                {
+                    spriteRenderer.sprite = leftMissile;
+                    myChild.SetActive(true);
+                    transform.position = new Vector3((myShip.columnPosition * 2.4f) - 1.2f, myShip.rowPosition * -1.73f, 0f);
+                }
+                else if (string.Equals(shipAction, "missileRight"))
+                {
+                    spriteRenderer.sprite = rightMissile;
+                    myChild.SetActive(true);
+                    transform.position = new Vector3((myShip.columnPosition * 2.4f) + 1.2f, myShip.rowPosition * -1.73f, 0f);
+                }
+                else
+                {
+                    myChild.SetActive(false);
+                }
             }
             else
             {
                 myChild.SetActive(false);
             }
-        }
-        else
-        {
-            myChild.SetActive(false);
         }
     }
 }

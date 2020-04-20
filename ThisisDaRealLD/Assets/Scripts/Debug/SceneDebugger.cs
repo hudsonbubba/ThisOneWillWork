@@ -28,12 +28,14 @@ public class SceneDebugger : MonoBehaviour
     public int playerStartSpeed;
     public int enemyStartSpeed;
     public List<int> testDeck = new List<int>();
+    public BoolVariable isFirstTurn;
 
     public GameEvent startOfTurnEvent;
     public GameEvent updateArt;
 
     void Awake()
     {
+        isFirstTurn.SetValue(true);
         // Player Reset
         playerShip.action = "";
         playerShip.speed = playerStartSpeed;

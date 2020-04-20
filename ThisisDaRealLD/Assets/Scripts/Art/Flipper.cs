@@ -30,7 +30,7 @@ public class Flipper : MonoBehaviour
 
     public void ae_ArtSwap() //called by an animation event on the last frame of the flipStart animation (when it is invisible)
     {
-        Debug.Log(this.ToString() + " - Should change to: " + onDeckArt.ToString());
+        // Debug.Log(this.ToString() + " - Should change to: " + onDeckArt.ToString());
         cardArt.setState(onDeckArt);
         //spriteRenderer.sprite = onDeckArt;
     }
