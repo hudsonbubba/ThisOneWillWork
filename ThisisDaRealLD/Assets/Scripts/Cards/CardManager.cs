@@ -13,6 +13,7 @@ public class CardManager : MonoBehaviour
     public int startHandSize;
     public int maxHandSize;
     public List<GameObject> cardButtonList = new List<GameObject>();
+    public List<GameObject> burnButtonList = new List<GameObject>();
     public IntegerVariable handIndexPlayed;
 
     // Events
@@ -108,6 +109,17 @@ public class CardManager : MonoBehaviour
         handIndexPlayed.SetValue(-1);
     }
 
+    public void e_burnCard()
+    {
+        int handIndex = handIndexPlayed.Value;
+        int cardToBurn = cardCollection.hand[handIndex];
+        cardCollection.hand.RemoveAt(handIndex);
+        discardCard(cardToBurn);
+
+        handIndexPlayed.SetValue(-1);
+        e_commitCard();
+    }
+
     void discardCard(int cardToDiscard)
     {
         cardCollection.discardPile.Add(cardToDiscard);
@@ -127,12 +139,14 @@ public class CardManager : MonoBehaviour
         foreach (GameObject cardButton in cardButtonList)
         {
             cardButton.SetActive(false);
+            burnButtonList[i].SetActive(false);
             if (i < cardCollection.hand.Count)
             {
                 int cardNumber = cardCollection.hand[i];
                 string cardAction = cardIndex.array[cardNumber];
                 cardButton.GetComponentInChildren<Text>().text = cardAction;
                 cardButton.SetActive(true);
+                burnButtonList[i].SetActive(true);
             }
             i++;
         }
