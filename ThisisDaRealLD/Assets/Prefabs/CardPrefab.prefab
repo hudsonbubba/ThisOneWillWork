@@ -106,6 +106,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 60f3f006b106ae441a0bbf98a62b0886, type: 3}
   - {fileID: 21300000, guid: 96d9d97f485b4ed488098fdf979b07b4, type: 3}
   - {fileID: 21300000, guid: 35a9415c4496a6048a192a198c522891, type: 3}
+  - {fileID: 21300000, guid: 667e504c8a4eec34e94de28e6b607838, type: 3}
+  - {fileID: 21300000, guid: a674d05164ccfe64dbcf1bb33f5993c9, type: 3}
   cardBack: {fileID: 21300000, guid: b09ebb96e93b5b8479daf555ca88bd5a, type: 3}
   cardIndex: 0
 --- !u!114 &6283823284985796122

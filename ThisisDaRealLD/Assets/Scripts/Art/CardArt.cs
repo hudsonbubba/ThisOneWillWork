@@ -55,6 +55,16 @@ public class CardArt : MonoBehaviour
             case 'x':
                 cardIndex = 5;
                 break;
+            case 'm':
+                if (state[1].Equals('l'))
+                {
+                    cardIndex = 6;
+                }
+                else
+                {
+                    cardIndex = 7;
+                }
+                break;
         }
         toggleFace(true);
     }
