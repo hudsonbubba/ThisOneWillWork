@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   signalSO: {fileID: 11400000, guid: 9e3665885d75b1a49bf5f6096ab7851c, type: 2}
+  filesTransmittedSO: {fileID: 11400000, guid: 8996101130b5e444faa8c2439f24797e, type: 2}
+  signalCompleteSO: {fileID: 11400000, guid: a1198856e1cdb8248915f05ae0f9d96b, type: 2}
   SIGNAL_MAX: 100
   signalGainPerTurn: 5
   signalGainPerRelay: 15
