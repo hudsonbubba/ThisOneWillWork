@@ -19,6 +19,7 @@ public class CardArtManager : MonoBehaviour
     private int animCounterMax = 2;
 
     public GameEvent endAnimationProcessEvent;
+    public GameEvent initialPreviewEvent;
 
     public Ship playerShip;
 
@@ -81,6 +82,7 @@ public class CardArtManager : MonoBehaviour
                 }
             }
         }
+        initialPreviewEvent.Raise();
 
         /*
         for (int i = 0; i < cards.GetLength(0); i++)

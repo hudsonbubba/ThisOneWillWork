@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3206428334227308182}
   - component: {fileID: 3206428334227308183}
   m_Layer: 0
-  m_Name: CardArtManager 1
+  m_Name: CardArtManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,6 +50,8 @@ MonoBehaviour:
   boardSlideState: {fileID: 11400000, guid: 2fd923246eb672b44a9dc6ba84787aa0, type: 2}
   cardList: []
   endAnimationProcessEvent: {fileID: 11400000, guid: 82fec7581e146b8429616fe19728fefc,
+    type: 2}
+  initialPreviewEvent: {fileID: 11400000, guid: efea6fbac8fc7fc49af1f57a30415ca2,
     type: 2}
   playerShip: {fileID: 11400000, guid: 8080611786d3be849b2801cd8f04fecb, type: 2}
 --- !u!114 &3206428334227308177
