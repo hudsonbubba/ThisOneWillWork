@@ -19,6 +19,15 @@ public class Flipper : MonoBehaviour
         animController = GetComponent<Animator>();
     }
 
+    public void FlipCardEntry(string shipString)
+    {
+        //Stop Coroutine
+        //StartCoroutine
+        //spriteRenderer.sprite = startImage; Removed arg from above
+        onDeckArt = shipString;
+        animController.SetTrigger("newCard");
+    }
+
     public void FlipCard(string shipString, string dir)
     {
         //Stop Coroutine

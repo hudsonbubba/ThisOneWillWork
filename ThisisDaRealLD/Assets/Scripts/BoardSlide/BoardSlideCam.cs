@@ -10,7 +10,7 @@ public class BoardSlideCam : MonoBehaviour
     public GameEvent camSlideEnd;
 
     public Ship playerShipSO;
-    public int playerSpeed;
+    private int playerSpeed;
 
     private const float xDist = 2.4f;
 
@@ -59,6 +59,7 @@ public class BoardSlideCam : MonoBehaviour
 
     public void e_SlideStart()
     {
+        playerSpeed = playerShipSO.speed;
         sliding = true;
         targetCamPos = new Vector3(transform.position.x + (playerSpeed * xDist), transform.position.y, transform.position.z);
     }

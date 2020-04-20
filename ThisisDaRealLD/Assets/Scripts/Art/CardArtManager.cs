@@ -77,7 +77,7 @@ public class CardArtManager : MonoBehaviour
                 if (currentStateSlide == "b")
                 {
                     Debug.Log("Card was B");
-                    cards[i, j].GetComponent<Flipper>().FlipCard(currentState, "up");
+                    cards[i, j].GetComponent<Flipper>().FlipCardEntry(currentState);
                 }
             }
         }
