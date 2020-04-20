@@ -171,7 +171,7 @@ public class Spawner : MonoBehaviour
                 enemy.isDead = true;
                 deadEnemyList.aliveList.Add(enemy);
                 aliveEnemyList.aliveList.Remove(enemy);
-                enemyDestroyedEvent.Raise();
+                // enemyDestroyedEvent.Raise(); Shouldn't trigger energy gain
             }
         }
 

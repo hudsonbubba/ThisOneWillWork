@@ -131,7 +131,7 @@ public class Resolver : MonoBehaviour
             {
                 deadShips.aliveList.Add(enemy);
                 enemyShips.aliveList.Remove(enemy);
-                enemyDestroyedEvent.Raise();
+                // enemyDestroyedEvent.Raise(); event already raised earlier on the actual occurrence
             }
         }
 
@@ -268,6 +268,7 @@ public class Resolver : MonoBehaviour
             {
                 Debug.Log("Enemy or missile went out of bounds");
                 ship.isDead = true;
+                // No event raised since you shouldn't get energy for this
             }
         }
         else
@@ -294,9 +295,14 @@ public class Resolver : MonoBehaviour
                         ship.columnPositionTelegraph = targetColumn;
                         takeDamage(10);
                     }
-                    else if (shipString[0].Equals('s') || shipString[0].Equals('m')) // Enemy hits boundary (or missile, technically not possible now but maybe later)
+                    else if (shipString[0].Equals('s')) // Enemy hits boundary
                     {
                         ship.isDead = true;
+                        if (isCommit)
+                        {
+                            enemyDestroyedEvent.Raise();
+                        }
+
                     }
                     targetString = "x";
                     break;
@@ -310,7 +316,16 @@ public class Resolver : MonoBehaviour
                         ship.columnPositionTelegraph = targetColumn;
                         takeDamage(objectDamage);
                     }
-                    else if (shipString[0].Equals('s') || shipString[0].Equals('m')) // Enemy or missile hits obstacle
+                    else if (shipString[0].Equals('s')) // Enemy hits obstacle
+                    {
+                        ship.isDead = true;
+                        telegraphedBoardState.board[targetRow, targetColumn] = "e";
+                        if (isCommit)
+                        {
+                            enemyDestroyedEvent.Raise();
+                        }
+                    }
+                    else if (shipString[0].Equals('m')) // Missile hits obstacle
                     {
                         ship.isDead = true;
                         telegraphedBoardState.board[targetRow, targetColumn] = "e";
@@ -341,6 +356,10 @@ public class Resolver : MonoBehaviour
                         ship.isDead = true; // Missile is now dead
                         hitShip.isDead = true; // Hit ship is now dead
                         telegraphedBoardState.board[targetRow, targetColumn] = "e";
+                        if (isCommit)
+                        {
+                            enemyDestroyedEvent.Raise();
+                        }
                     }
                     else
                     {
@@ -370,7 +389,10 @@ public class Resolver : MonoBehaviour
         }
         else
         {
-            turnPredictor.appendPos(shipString, targetRow, targetColumn);
+            if (!shipString[0].Equals('m'))
+            {
+                turnPredictor.appendPos(shipString, shipRow, shipColumn, targetRow, targetColumn);
+            }
             yield break;
         }
     }

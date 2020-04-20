@@ -123,13 +123,26 @@ public class TurnPredictor : MonoBehaviour
         lineRenderer.enabled = false;
     }
 
-    public void appendPos(string shipString, int targetRow, int targetCol) // To be called by the resolver
+    public void e_clearDictionary()
+    {
+        foreach (KeyValuePair<string, List<Vector2>> keyVal in predictorDic)
+        {
+            keyVal.Value.Clear();
+        }
+    }
+
+    public void appendPos(string shipString, int fromRow, int fromCol, int targetRow, int targetCol) // To be called by the resolver
     {
         List<Vector2> temp = new List<Vector2>();
         if(predictorDic.TryGetValue(shipString, out temp))
         {
-            Vector2 tempVector2 = new Vector2(targetRow * -1.73f, targetCol * 2.4f); //just how far apart the cards are 
-            temp.Add(tempVector2);
+            if (temp.Count == 0)
+            {
+                Vector2 tempVector2From = new Vector2(fromRow * -1.73f, fromCol * 2.4f); //just how far apart the cards are 
+                temp.Add(tempVector2From);
+            }
+            Vector2 tempVector2Target = new Vector2(targetRow * -1.73f, targetCol * 2.4f); //just how far apart the cards are 
+            temp.Add(tempVector2Target);
         } else
         {
             Debug.LogError("Dictionary did not contain value for: " + shipString);

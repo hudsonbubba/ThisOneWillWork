@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2786818866842982353}
   - component: {fileID: 2786818866842982352}
   - component: {fileID: 209820967}
+  - component: {fileID: 837671266}
   m_Layer: 0
   m_Name: DebugManager
   m_TagString: Untagged
@@ -49,9 +50,9 @@ MonoBehaviour:
   aliveEnemyList: {fileID: 11400000, guid: d92c8a2b81395984f95376dda3a70693, type: 2}
   deadEnemyList: {fileID: 11400000, guid: 67132838bac4aa74cbe227c52c4e60b1, type: 2}
   allEnemyList: {fileID: 11400000, guid: ebcdf3c19cda77c45969d52315d67441, type: 2}
-  enemyShip: {fileID: 11400000, guid: 18b4d5908ac78d045889d0a96298d60b, type: 2}
   cardCollection: {fileID: 11400000, guid: 3dcc45d691dd30d4d992d6d7f6b483c4, type: 2}
   cardPlayed: {fileID: 11400000, guid: 1a112118cd6926c4a8bed433e164032b, type: 2}
+  boardCoords: {fileID: 11400000, guid: 4543732e4332355409d991684d7d52e3, type: 2}
   playerStartSpeed: 1
   enemyStartSpeed: 1
   testDeck: 00000000000000000100000001000000020000000200000003000000030000000400000004000000
@@ -69,12 +70,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59bbb8fe6ec3fe743a134f49c3a118d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 2cdec073a4ab030428e056f0169bdcd2, type: 2}
+  Event: {fileID: 11400000, guid: b2519e34da90eee4eba2ba1652f4b0ae, type: 2}
   Response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2786818866842982352}
         m_MethodName: e_printBoardState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &837671266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2786818866842982355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59bbb8fe6ec3fe743a134f49c3a118d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: bf46f71ed819ba441a775f1f6c10a301, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2786818866842982352}
+        m_MethodName: e_printBoardCoords
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

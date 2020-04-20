@@ -73,6 +73,7 @@ GameObject:
   - component: {fileID: 8944690215301390183}
   - component: {fileID: 8944690215301390185}
   - component: {fileID: 8944690215301390184}
+  - component: {fileID: 1496810888}
   m_Layer: 0
   m_Name: TurnPredictor
   m_TagString: Untagged
@@ -120,17 +121,7 @@ MonoBehaviour:
   boardCoords: {fileID: 11400000, guid: 4543732e4332355409d991684d7d52e3, type: 2}
   ReticuleShipString: {fileID: 11400000, guid: fc1e4083b30f98d44b19058c4eb26586, type: 2}
   cardList: []
-  playerPos: []
-  s1Pos: []
-  s2Pos: []
-  s3Pos: []
-  s4Pos: []
-  s5Pos: []
-  s6Pos: []
-  s7Pos: []
-  s8Pos: []
-  s9Pos: []
-  s10Pos: []
+  shipStringToDisplay: 
 --- !u!120 &8944690215301390183
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -173,6 +164,24 @@ LineRenderer:
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 10, y: 0, z: 1}
+  - {x: 10, y: 0, z: 1}
+  - {x: 10, y: 0, z: 1}
+  - {x: 10, y: 0, z: 1}
+  - {x: 10, y: 0, z: 1}
+  - {x: 10, y: 0, z: 1}
+  - {x: 10, y: 0, z: 1}
+  - {x: 10, y: 0, z: 1}
+  - {x: 10, y: 0, z: 1}
+  - {x: 10, y: 0, z: 1}
+  - {x: 10, y: 0, z: 1}
+  - {x: 10, y: 0, z: 1}
+  - {x: 10, y: 0, z: 1}
+  - {x: 10, y: 0, z: 1}
+  - {x: 10, y: 0, z: 1}
+  - {x: 10, y: 0, z: 1}
+  - {x: 10, y: 0, z: 1}
+  - {x: 10, y: 0, z: 1}
+  - {x: 10, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -180,8 +189,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 0.03174591
+        time: 0.0068473816
+        value: 0.03967285
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -194,7 +203,7 @@ LineRenderer:
     colorGradient:
       serializedVersion: 2
       key0: {r: 0, g: 1, b: 0.91636705, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 0, g: 1, b: 0.9176471, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -273,6 +282,33 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8944690215301390181}
         m_MethodName: e_stopLine
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1496810888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8944690215301390180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59bbb8fe6ec3fe743a134f49c3a118d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: a1ea33f3a0cfd664595190e0ba91324a, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8944690215301390181}
+        m_MethodName: e_clearDictionary
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
