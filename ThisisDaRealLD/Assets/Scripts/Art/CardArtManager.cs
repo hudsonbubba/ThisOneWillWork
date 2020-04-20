@@ -126,6 +126,7 @@ public class CardArtManager : MonoBehaviour
         {
             GameObject movingToCard = cards[toRow, toCol];
             movingToCard.GetComponent<Flipper>().FlipCard("d", dir); // Flip to the explosion card first
+            this.gameObject.GetComponent<AudioSource>().Play();
 
             yield return new WaitUntil(() => animDone);
             yield return new WaitForSeconds(0.35f); // Show explosion for a time before starting flip back
