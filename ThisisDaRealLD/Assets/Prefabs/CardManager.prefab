@@ -51,10 +51,9 @@ MonoBehaviour:
   cardCollection: {fileID: 11400000, guid: 3dcc45d691dd30d4d992d6d7f6b483c4, type: 2}
   cardIndex: {fileID: 11400000, guid: 9a761f380f9102f4fa01a9fc2d2bf235, type: 2}
   playerShip: {fileID: 11400000, guid: 8080611786d3be849b2801cd8f04fecb, type: 2}
-  startHandSize: 4
-  maxHandSize: 6
+  startHandSize: 5
+  maxHandSize: 5
   cardButtonList:
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -66,8 +65,15 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
   handIndexPlayed: {fileID: 11400000, guid: 1a112118cd6926c4a8bed433e164032b, type: 2}
+  cardSpriteList:
+  - {fileID: 21300000, guid: cf75fde1c16007643ac4095c9684c3a8, type: 3}
+  - {fileID: 21300000, guid: a4daf68d2692f2c43b3ae230b42f5889, type: 3}
+  - {fileID: 21300000, guid: 24846cde2c7120c4e97ff7295adf1806, type: 3}
+  - {fileID: 21300000, guid: 34dd1c41c299e614f9e929252df524b4, type: 3}
+  - {fileID: 21300000, guid: 1012df51f080a9c49a34a68a3f22af53, type: 3}
+  - {fileID: 21300000, guid: 0e40ba9b2646412498ae10140bc420a3, type: 3}
+  - {fileID: 21300000, guid: 988e92f844892054486ccbaa79ca9e61, type: 3}
   cardDiscardedEvent: {fileID: 11400000, guid: 2bf5c8245d253904883a8ec9b6db0ae7, type: 2}
   cardDrawnEvent: {fileID: 11400000, guid: 9058ab9b55d2c5249904124d6ff319f9, type: 2}
   reshuffleDiscardEvent: {fileID: 11400000, guid: 54ccd74564403bc4a9c275dd91280f0f,

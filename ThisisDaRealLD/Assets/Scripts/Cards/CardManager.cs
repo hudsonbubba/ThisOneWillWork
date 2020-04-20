@@ -15,6 +15,7 @@ public class CardManager : MonoBehaviour
     public List<GameObject> cardButtonList = new List<GameObject>();
     public List<GameObject> burnButtonList = new List<GameObject>();
     public IntegerVariable handIndexPlayed;
+    public List<Sprite> cardSpriteList = new List<Sprite>();
 
     // Events
     public GameEvent cardDiscardedEvent;
@@ -143,8 +144,10 @@ public class CardManager : MonoBehaviour
             if (i < cardCollection.hand.Count)
             {
                 int cardNumber = cardCollection.hand[i];
-                string cardAction = cardIndex.array[cardNumber];
-                cardButton.GetComponentInChildren<Text>().text = cardAction;
+                //string cardAction = cardIndex.array[cardNumber];
+
+                cardButton.GetComponent<Image>().sprite = cardSpriteList[cardNumber];
+                //cardButton.GetComponentInChildren<Text>().text = cardAction;
                 cardButton.SetActive(true);
                 burnButtonList[i].SetActive(true);
             }
