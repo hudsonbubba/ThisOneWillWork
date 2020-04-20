@@ -16,8 +16,11 @@ public class SceneDebugger : MonoBehaviour
 
     public BoardState officialBoardState;
     public Ship playerShip;
+
     public AliveEnemyList aliveEnemyList;
-    public Ship enemyShip;
+    public AliveEnemyList deadEnemyList;
+    public AliveEnemyList allEnemyList;
+    
     public CardCollection cardCollection;
     public IntegerVariable cardPlayed;
 
@@ -35,14 +38,20 @@ public class SceneDebugger : MonoBehaviour
         playerShip.speed = playerStartSpeed;
         playerShip.isDead = false;
 
+        // Enemy lists reset
+        aliveEnemyList.aliveList.Clear();
+
+        List<Ship> deadList = new List<Ship>(allEnemyList.aliveList);
+        deadEnemyList.aliveList = deadList;
+
+        Ship enemyShip = deadEnemyList.aliveList[0];
+        deadEnemyList.aliveList.RemoveAt(0);
+        aliveEnemyList.aliveList.Add(enemyShip);
+
         // Enemy Reset
         enemyShip.action = "";
         enemyShip.speed = enemyStartSpeed;
         enemyShip.isDead = false;
-
-        // Enemy Alive list reset
-        aliveEnemyList.aliveList.Clear();
-        aliveEnemyList.aliveList.Add(enemyShip);
 
         // Card collection reset
         cardCollection.deck.Clear();
@@ -55,7 +64,7 @@ public class SceneDebugger : MonoBehaviour
         cardPlayed.SetValue(-1);
 
         // Grab positions of player and enemy from BoardState
-        for (int row = 0; row < officialBoardState.board.GetLength(0); row++)
+        for (int row = 1; row < (officialBoardState.board.GetLength(0) - 1); row++)
         {
             for (int column = 0; column < officialBoardState.board.GetLength(1); column++)
             {

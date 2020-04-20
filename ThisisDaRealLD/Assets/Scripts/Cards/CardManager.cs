@@ -91,7 +91,7 @@ public class CardManager : MonoBehaviour
         updateHand();
     }
 
-    public void e_startTurn()
+    public void e_endTurn()
     {
         drawCard();
         updateHand();

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b276fa18ef9638a4c9227884fec3483c, type: 3}
+  m_Name: AllEnemies
+  m_EditorClassIdentifier: 
+  DeveloperDescription: 
+  aliveList:
+  - {fileID: 11400000, guid: 18b4d5908ac78d045889d0a96298d60b, type: 2}
+  - {fileID: 11400000, guid: 634de79618a4f184e88c4b18fc5b3f07, type: 2}
+  - {fileID: 11400000, guid: bb257c0823b0c8649b1eabbe0f247e72, type: 2}
+  - {fileID: 11400000, guid: 0038b1a215c92d548888ee087d09ed57, type: 2}
+  - {fileID: 11400000, guid: c249e453ac4e42941b26d052a382b67d, type: 2}
+  - {fileID: 11400000, guid: 0e7ef8fef6967724aa179ce289b41c4c, type: 2}
+  - {fileID: 11400000, guid: ae8e77226828d304abe8c02074e8b9e8, type: 2}
+  - {fileID: 11400000, guid: 23ad136fef4c1eb4d8fa7a6375fcbf57, type: 2}
+  - {fileID: 11400000, guid: 34ac8ceab35c121429cce56a1f5ef213, type: 2}
+  - {fileID: 11400000, guid: 5c73ffc74b864994e9b217e2881ec86d, type: 2}
