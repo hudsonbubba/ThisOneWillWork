@@ -6,6 +6,7 @@ public class CardArtManager : MonoBehaviour
 {
 
     public BoardState boardStateActual;
+    public BoardState boardSlideState;
 
     public List<GameObject> cardList = new List<GameObject>();
 
@@ -20,6 +21,9 @@ public class CardArtManager : MonoBehaviour
     public GameEvent endAnimationProcessEvent;
 
     public Ship playerShip;
+
+    string currentState;
+    string currentStateSlide;
 
     // Start is called before the first frame update
     void Awake()
@@ -43,7 +47,7 @@ public class CardArtManager : MonoBehaviour
 
     public void e_UpdateBoard ()
     {
-        string currentState;
+        //string currentState; - defined globally
         for (int i = 0; i < cards.GetLength(0); i++)
         {
             for (int j = 0; j < cards.GetLength(1); j++)
@@ -53,6 +57,52 @@ public class CardArtManager : MonoBehaviour
                 cards[i, j].GetComponent<CardArt>().setState(currentState);
             }
         }
+    }
+
+    public void e_UpdateSlideBoard()
+    {
+
+        for (int i = 0; i < cards.GetLength(0); i++)
+        {
+            for (int j = 0; j < cards.GetLength(1); j++)
+            {
+                //cards[i, j] = cardList[z];
+                currentState = boardStateActual.board[i, j];
+            }
+        }
+
+        //string currentState;
+        for (int i = 0; i < cards.GetLength(0); i++)
+        {
+            for (int j = 0; j < cards.GetLength(1); j++)
+            {
+                //cards[i, j] = cardList[z];
+                currentStateSlide = boardSlideState.board[i, j];
+                cards[i, j].GetComponent<CardArt>().setState(currentStateSlide);
+                if (currentStateSlide == "b")
+                {
+                    Debug.Log("Card was B");
+                    cards[i, j].GetComponent<Flipper>().FlipCard(currentState, "up");
+                }
+            }
+        }
+
+        /*
+        for (int i = 0; i < cards.GetLength(0); i++)
+        {
+            for (int j = 0; j < cards.GetLength(1); j++)
+            {
+                //cards[i, j] = cardList[z];
+                
+                if(currentStateSlide == "b")
+                {
+                    Debug.Log("Card was B");
+                    cards[i, j].GetComponent<Flipper>().FlipCard(currentState, "up");
+                }
+
+            }
+        }
+        */
     }
 
     public void AnimateCard(int fromRow, int fromCol, int toRow, int toCol, string dir, string shipString, string targetString, bool isDead)

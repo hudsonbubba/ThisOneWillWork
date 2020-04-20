@@ -45,6 +45,7 @@ public class Flipper : MonoBehaviour
         EndAnimation.Raise();
     }
 
+
     /*
     IEnumerator Flip(Sprite startImage, Sprite endImage, int cardIndex, string dir)
     {
