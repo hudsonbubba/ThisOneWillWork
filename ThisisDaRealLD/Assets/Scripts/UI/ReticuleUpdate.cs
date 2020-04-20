@@ -11,10 +11,13 @@ public class ReticuleUpdate : MonoBehaviour
     public Sprite enemyReticule;
     string myShipString;
 
+    GameObject myChild;
+
     private void Start()
     {
         myShipString = GetComponent<MouseOverReticule>().myShipString;
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        myChild = gameObject.transform.Find("ReticuleArt").gameObject;
 
         if(myShipString == "p")
         {
@@ -35,7 +38,12 @@ public class ReticuleUpdate : MonoBehaviour
                 string indexValue = telegraphedBoardState.board[row, column];
                 if (string.Equals(indexValue, myShipString))
                 {
+                    myChild.SetActive(true);
                     transform.position = new Vector3(column * 2.4f, row * -1.73f, 0f); //THIS IS HOW IT SHOULD BE
+                }
+                else
+                {
+                    myChild.SetActive(false);
                 }
              
             }
