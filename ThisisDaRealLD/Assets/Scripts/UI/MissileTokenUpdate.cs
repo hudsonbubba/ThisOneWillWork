@@ -42,11 +42,14 @@ public class MissileTokenUpdate : MonoBehaviour
                 }
                 else
                 {
+                    spriteRenderer.sprite = null;
                     myChild.SetActive(false);
                 }
+                break;
             }
             else
             {
+                spriteRenderer.sprite = null;
                 myChild.SetActive(false);
             }
         }
