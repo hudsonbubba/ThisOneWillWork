@@ -45,6 +45,11 @@ public class SceneDebugger : MonoBehaviour
         List<Ship> deadList = new List<Ship>(allEnemyList.aliveList);
         deadEnemyList.aliveList = deadList;
 
+        foreach (Ship enemy in deadEnemyList.aliveList)
+        {
+            enemy.isDead = true;
+        }
+
         Ship enemyShip = deadEnemyList.aliveList[0];
         deadEnemyList.aliveList.RemoveAt(0);
         aliveEnemyList.aliveList.Add(enemyShip);
