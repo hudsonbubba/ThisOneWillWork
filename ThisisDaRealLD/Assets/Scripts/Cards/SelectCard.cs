@@ -11,6 +11,8 @@ public class SelectCard : MonoBehaviour
 
     private bool isSelected = false;
 
+    public Animator animator;
+
     private void Start()
     {
         e_resetSelection();
@@ -22,7 +24,8 @@ public class SelectCard : MonoBehaviour
         {
             resetSelectionEvent.Raise();
             playedCard.SetValue(handIndex);
-            this.gameObject.GetComponent<Image>().color = Color.blue;
+            animator.SetBool("glowing", true);
+            //this.gameObject.GetComponent<Image>().color = Color.blue;
             isSelected = true;
         }
         else
@@ -37,7 +40,8 @@ public class SelectCard : MonoBehaviour
 
     public void e_resetSelection()
     {
-        this.gameObject.GetComponent<Image>().color = Color.white;
+        animator.SetBool("glowing", false);
+        //this.gameObject.GetComponent<Image>().color = Color.white;
         isSelected = false;
     }
 }
