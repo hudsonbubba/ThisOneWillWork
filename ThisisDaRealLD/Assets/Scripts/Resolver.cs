@@ -228,22 +228,24 @@ public class Resolver : MonoBehaviour
         missileShip.rowPosition = ship.rowPosition;
         missileShip.columnPosition = ship.columnPosition;
         resetShip(missileShip);
-        missileShip.shipTypeString = "m1"; // m1 signifies it is the first movement of the missle, so it shouldnt clear the card behind it
+        
 
         if (string.Equals(direction, "right"))
         {
-            while(!missileShip.isDead)
+            missileShip.shipTypeString = "mr1"; // m1 signifies it is the first movement of the missle, so it shouldnt clear the card behind it
+            while (!missileShip.isDead)
             {
                 yield return StartCoroutine(moveRight(missileShip));
-                missileShip.shipTypeString = "m";
+                missileShip.shipTypeString = "mr";
             }
         } 
         else
         {
+            missileShip.shipTypeString = "ml1"; // m1 signifies it is the first movement of the missle, so it shouldnt clear the card behind it
             while (!missileShip.isDead)
             {
                 yield return StartCoroutine(moveLeft(missileShip));
-                missileShip.shipTypeString = "m";
+                missileShip.shipTypeString = "ml";
             }
         }
     }
@@ -377,7 +379,7 @@ public class Resolver : MonoBehaviour
 
             }
         }
-        if (!string.Equals(shipString, "m1"))
+        if (!(string.Equals(shipString, "mr1") || string.Equals(shipString, "ml1")))
         {
             // All actions require clearing the previous space unless it is the first movement of a missile
             telegraphedBoardState.board[shipRow, shipColumn] = "e";
@@ -401,7 +403,7 @@ public class Resolver : MonoBehaviour
     {
         animDone = false;
         animCounterMax = 0;
-        if (!string.Equals(shipString, "m1"))
+        if (!(string.Equals(shipString, "mr1") || string.Equals(shipString, "ml1")))
         {
             animCounterMax++;
         }

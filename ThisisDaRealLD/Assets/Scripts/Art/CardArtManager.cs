@@ -57,10 +57,10 @@ public class CardArtManager : MonoBehaviour
     {
 
         //Debug.Log("Called Animate Card, " + shipString.ToString());
-        
-        
 
-        if (!string.Equals(shipString, "m1"))
+
+
+        if (!(string.Equals(shipString, "mr1") || string.Equals(shipString, "ml1")))
         {
             GameObject movingFromCard = cards[fromRow, fromCol];
             movingFromCard.GetComponent<Flipper>().FlipCard("e", dir); // The card being moved from should always be empty
