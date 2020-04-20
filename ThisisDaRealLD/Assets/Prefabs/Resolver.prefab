@@ -59,9 +59,11 @@ MonoBehaviour:
   speedUpEvent: {fileID: 11400000, guid: 852eb188bdc1f37468873abc9e2a7c70, type: 2}
   slowDownEvent: {fileID: 11400000, guid: 0e5fdf9fda4607f4495cc26ec493efd0, type: 2}
   updateReticules: {fileID: 11400000, guid: ae3eb060a189b7c4293e3a2d3b333b51, type: 2}
+  gameOverEvent: {fileID: 11400000, guid: 3b73c7367d277f74ca27299f32a6c0a9, type: 2}
   MAX_SPEED: 3
   objectDamage: 1
   missileDamage: 1
+  deathCause: {fileID: 11400000, guid: f9d928130a5993d4fa3fa2801c2a3ec7, type: 2}
 --- !u!114 &9104292251510815710
 MonoBehaviour:
   m_ObjectHideFlags: 0

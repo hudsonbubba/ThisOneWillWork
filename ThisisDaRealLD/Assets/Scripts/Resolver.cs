@@ -21,10 +21,12 @@ public class Resolver : MonoBehaviour
     public GameEvent speedUpEvent;
     public GameEvent slowDownEvent;
     public GameEvent updateReticules;
+    public GameEvent gameOverEvent;
 
     public int MAX_SPEED;
     public int objectDamage;
     public int missileDamage;
+    public StringVariable deathCause;
 
     private int MAX_ROWS;
     private int MAX_COLUMNS;
@@ -117,12 +119,6 @@ public class Resolver : MonoBehaviour
             updateShip(enemy);
         }
 
-        // check if player isDead
-        if (playerShip.isDead)
-        {
-            Debug.Log("Game Over!");
-        }
-
         // Remove enemies from the alive list if they are marked as isDead
         for (int i = enemyShips.aliveList.Count - 1; i >= 0; i--)
         {
@@ -135,7 +131,16 @@ public class Resolver : MonoBehaviour
             }
         }
 
-        endOfTurnEvent.Raise();
+        // check if player isDead
+        if (playerShip.isDead)
+        {
+            Debug.Log("Game Over!");
+            gameOverEvent.Raise();
+        }
+        else
+        {
+            endOfTurnEvent.Raise();
+        }
     }
 
     IEnumerator actionInterpreter(Ship ship, string optionalDirection = null)
@@ -265,6 +270,7 @@ public class Resolver : MonoBehaviour
             {
                 // You die, game over
                 ship.isDead = true;
+                deathCause.SetValue("out of bounds");
             }
             else if (shipString[0].Equals('s') || shipString[0].Equals('m')) // Enemy or missile hits boundary
             {
@@ -295,7 +301,7 @@ public class Resolver : MonoBehaviour
 
                         ship.rowPositionTelegraph = targetRow;
                         ship.columnPositionTelegraph = targetColumn;
-                        takeDamage(10);
+                        takeDamage(10, "boundary");
                     }
                     else if (shipString[0].Equals('s')) // Enemy hits boundary
                     {
@@ -316,7 +322,7 @@ public class Resolver : MonoBehaviour
                         
                         ship.rowPositionTelegraph = targetRow;
                         ship.columnPositionTelegraph = targetColumn;
-                        takeDamage(objectDamage);
+                        takeDamage(objectDamage, "object");
                     }
                     else if (shipString[0].Equals('s')) // Enemy hits obstacle
                     {
@@ -339,7 +345,7 @@ public class Resolver : MonoBehaviour
                     if (shipString[0].Equals('m'))
                     {
                         ship.isDead = true; // Missile is now dead
-                        takeDamage(missileDamage); // Player takes damage
+                        takeDamage(missileDamage, "missile"); // Player takes damage
                     }
                     else
                     {
@@ -432,7 +438,7 @@ public class Resolver : MonoBehaviour
         }
     }
 
-    void takeDamage(int damageAmount)
+    void takeDamage(int damageAmount, string damageReason)
     {
         Debug.Log("Damage taken!");
         playerShip.speedTelegraph -= damageAmount;
@@ -440,6 +446,7 @@ public class Resolver : MonoBehaviour
         if (playerShip.speedTelegraph <= 0)
         {
             playerShip.isDead = true;
+            deathCause.SetValue(damageReason);
         }
         
         if (isCommit)
@@ -462,6 +469,7 @@ public class Resolver : MonoBehaviour
         ship.columnPositionTelegraph = ship.columnPosition;
         ship.speedTelegraph = ship.speed;
         ship.isDead = false;
+        deathCause.SetValue("");
     }
 
     Ship findEnemyShipByTypeString(string targetString)

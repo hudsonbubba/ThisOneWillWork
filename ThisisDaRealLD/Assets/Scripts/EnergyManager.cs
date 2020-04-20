@@ -10,6 +10,9 @@ public class EnergyManager : MonoBehaviour
     public float energyGainPerBurn;
     public float energyMax;
 
+    public GameEvent gameOverEvent;
+    public StringVariable deathReason;
+
     private void Start()
     {
         energySO.SetValue(energyMax);
@@ -21,6 +24,8 @@ public class EnergyManager : MonoBehaviour
         if (energySO.Value <= 0)
         {
             Debug.Log("Energy fully depleted. Game Over!");
+            deathReason.SetValue("energy");
+            gameOverEvent.Raise();
         }
     }
 
