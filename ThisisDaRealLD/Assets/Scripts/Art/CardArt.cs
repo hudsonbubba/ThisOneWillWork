@@ -65,6 +65,12 @@ public class CardArt : MonoBehaviour
                     cardIndex = 7;
                 }
                 break;
+            case 'd':
+                cardIndex = 8;
+                break;
+            default:
+                cardIndex = 0; // Default to the card back if something goes wrong and we dont find a valid key
+                break;
         }
         toggleFace(true);
     }

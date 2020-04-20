@@ -297,10 +297,10 @@ public class Resolver : MonoBehaviour
                     {
                         // You die, game over
                         // ship.isDead = true;
-                        telegraphedBoardState.board[targetRow, targetColumn] = shipString;
+                        //telegraphedBoardState.board[targetRow, targetColumn] = shipString;
 
-                        ship.rowPositionTelegraph = targetRow;
-                        ship.columnPositionTelegraph = targetColumn;
+                        //ship.rowPositionTelegraph = targetRow;
+                        //ship.columnPositionTelegraph = targetColumn;
                         takeDamage(10, "boundary");
                     }
                     else if (shipString[0].Equals('s')) // Enemy hits boundary
@@ -414,12 +414,17 @@ public class Resolver : MonoBehaviour
             animCounterMax++;
         }
 
-        if (!isDead)
+
+        if (string.Equals(targetString, "o") || string.Equals(targetString, "x") || (shipString[0].Equals('m') && (targetString[0].Equals('s') || targetString[0].Equals('p'))))
         {
-            animCounterMax++;
-        } else if (string.Equals(targetString, "o") || (shipString[0].Equals('m') && shipString[0].Equals('s')))
+            animCounterMax += 2; // One for initial flip to explosion, followed by another for back to whatever it should be
+        }
+        else
         {
-            animCounterMax++;
+            if (!isDead)
+            {
+                animCounterMax++;
+            }
         }
 
         cardArtManager.AnimateCard(shipRow, shipColumn, targetRow, targetColumn, direction, shipString, targetString, isDead);
@@ -447,11 +452,12 @@ public class Resolver : MonoBehaviour
         {
             playerShip.isDead = true;
             deathCause.SetValue(damageReason);
+            telegraphedBoardState.board[playerShip.rowPositionTelegraph, playerShip.columnPositionTelegraph] = "e";
+
         }
-        
+
         if (isCommit)
         {
-            telegraphedBoardState.board[playerShip.rowPositionTelegraph, playerShip.columnPositionTelegraph] = "e";
             slowDownEvent.Raise();
         }
     }

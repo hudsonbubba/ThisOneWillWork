@@ -51,6 +51,8 @@ MonoBehaviour:
   energyGainPerKill: 20
   energyGainPerBurn: 20
   energyMax: 100
+  gameOverEvent: {fileID: 11400000, guid: 3b73c7367d277f74ca27299f32a6c0a9, type: 2}
+  deathReason: {fileID: 11400000, guid: f9d928130a5993d4fa3fa2801c2a3ec7, type: 2}
 --- !u!114 &1921666794409230223
 MonoBehaviour:
   m_ObjectHideFlags: 0
