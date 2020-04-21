@@ -31,11 +31,62 @@ public class CardArtManager : MonoBehaviour
     void Awake()
     {
 
-        for (int i = 0; i < 50; i++)
-        {
-            string str = (i + 1).ToString();
-            cardList.Add(GameObject.FindGameObjectWithTag(str));
-        }
+        /*        for (int i = 0; i < 50; i++)
+                {
+                    string str = (i + 1).ToString();
+                    Debug.Log(str);
+                    cardList.Add(GameObject.FindGameObjectWithTag(str));
+                }*/
+        cardList.Add(GameObject.FindGameObjectWithTag("1"));
+        cardList.Add(GameObject.FindGameObjectWithTag("2"));
+        cardList.Add(GameObject.FindGameObjectWithTag("3"));
+        cardList.Add(GameObject.FindGameObjectWithTag("4"));
+        cardList.Add(GameObject.FindGameObjectWithTag("5"));
+        cardList.Add(GameObject.FindGameObjectWithTag("6"));
+        cardList.Add(GameObject.FindGameObjectWithTag("7"));
+        cardList.Add(GameObject.FindGameObjectWithTag("8"));
+        cardList.Add(GameObject.FindGameObjectWithTag("9"));
+        cardList.Add(GameObject.FindGameObjectWithTag("10"));
+        cardList.Add(GameObject.FindGameObjectWithTag("11"));
+        cardList.Add(GameObject.FindGameObjectWithTag("12"));
+        cardList.Add(GameObject.FindGameObjectWithTag("13"));
+        cardList.Add(GameObject.FindGameObjectWithTag("14"));
+        cardList.Add(GameObject.FindGameObjectWithTag("15"));
+        cardList.Add(GameObject.FindGameObjectWithTag("16"));
+        cardList.Add(GameObject.FindGameObjectWithTag("17"));
+        cardList.Add(GameObject.FindGameObjectWithTag("18"));
+        cardList.Add(GameObject.FindGameObjectWithTag("19"));
+        cardList.Add(GameObject.FindGameObjectWithTag("20"));
+        cardList.Add(GameObject.FindGameObjectWithTag("21"));
+        cardList.Add(GameObject.FindGameObjectWithTag("22"));
+        cardList.Add(GameObject.FindGameObjectWithTag("23"));
+        cardList.Add(GameObject.FindGameObjectWithTag("24"));
+        cardList.Add(GameObject.FindGameObjectWithTag("25"));
+        cardList.Add(GameObject.FindGameObjectWithTag("26"));
+        cardList.Add(GameObject.FindGameObjectWithTag("27"));
+        cardList.Add(GameObject.FindGameObjectWithTag("28"));
+        cardList.Add(GameObject.FindGameObjectWithTag("29"));
+        cardList.Add(GameObject.FindGameObjectWithTag("30"));
+        cardList.Add(GameObject.FindGameObjectWithTag("31"));
+        cardList.Add(GameObject.FindGameObjectWithTag("32"));
+        cardList.Add(GameObject.FindGameObjectWithTag("33"));
+        cardList.Add(GameObject.FindGameObjectWithTag("34"));
+        cardList.Add(GameObject.FindGameObjectWithTag("35"));
+        cardList.Add(GameObject.FindGameObjectWithTag("36"));
+        cardList.Add(GameObject.FindGameObjectWithTag("37"));
+        cardList.Add(GameObject.FindGameObjectWithTag("38"));
+        cardList.Add(GameObject.FindGameObjectWithTag("39"));
+        cardList.Add(GameObject.FindGameObjectWithTag("40"));
+        cardList.Add(GameObject.FindGameObjectWithTag("41"));
+        cardList.Add(GameObject.FindGameObjectWithTag("42"));
+        cardList.Add(GameObject.FindGameObjectWithTag("43"));
+        cardList.Add(GameObject.FindGameObjectWithTag("44"));
+        cardList.Add(GameObject.FindGameObjectWithTag("45"));
+        cardList.Add(GameObject.FindGameObjectWithTag("46"));
+        cardList.Add(GameObject.FindGameObjectWithTag("47"));
+        cardList.Add(GameObject.FindGameObjectWithTag("48"));
+        cardList.Add(GameObject.FindGameObjectWithTag("49"));
+        cardList.Add(GameObject.FindGameObjectWithTag("50"));
 
         /*foreach (GameObject card in GameObject.FindGameObjectsWithTag("Card")) 
         {
