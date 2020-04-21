@@ -5,14 +5,18 @@ using UnityEngine;
 public class IntroDissolver : MonoBehaviour
 {
 
+    public Material matDissolve;
+    Material matDefault;
+
     SpriteRenderer spriteRenderer;
 
-
-    float fade = 0f;
+    bool isDissolving = false;
+    float fade = 1f;
 
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        matDefault = spriteRenderer.material;
     }
 
     private void Update()
