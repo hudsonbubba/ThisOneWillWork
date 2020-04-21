@@ -6,7 +6,7 @@ public class IntroDissolver : MonoBehaviour
 {
 
     public Material matDissolve;
-    Material matDefault;
+    public Material matDefault;
 
     SpriteRenderer spriteRenderer;
 
@@ -16,20 +16,20 @@ public class IntroDissolver : MonoBehaviour
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        matDefault = spriteRenderer.material;
+        //matDefault = spriteRenderer.material;
+        matDissolve.SetFloat("_Fade", 0f);
     }
 
     private void Update()
     {
         if (isDissolving)
         {
-            spriteRenderer.material = matDissolve;
 
-            fade -= Time.deltaTime;
+            fade += Time.deltaTime;
 
-            if (fade <= 0f)
+            if (fade >= 1f)
             {
-                fade = 0f;
+                spriteRenderer.material = matDefault;
                 isDissolving = false;
             }
 
@@ -40,7 +40,6 @@ public class IntroDissolver : MonoBehaviour
     public void e_FadeOut()
     {
         isDissolving = true;
-        matDissolve.SetFloat("_Fade", 1);
     }
 
     public void e_ReAppear()

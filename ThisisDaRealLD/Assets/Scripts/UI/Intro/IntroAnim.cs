@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class IntroAnim : MonoBehaviour
 {
 
     Animator animator;
     AudioSource audio;
+
+    public GameObject SplashScreen;
 
     bool isAnim = true;
     //AudioClip beepBoop;
@@ -41,11 +44,17 @@ public class IntroAnim : MonoBehaviour
 
     public void ae_endScene()
     {
-        //endScene
+        StartCoroutine("endScenEnum");
     }
 
     public void ae_doneAnim()
     {
         isAnim = false;
+    }
+
+    private IEnumerator endScenEnum()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene("REAL_MAIN");
     }
 }
