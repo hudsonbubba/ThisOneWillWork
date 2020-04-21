@@ -39,8 +39,17 @@ public class SceneDebugger : MonoBehaviour
     {
         Screen.SetResolution(1920, 1080, true, 60);
         isFirstTurn.SetValue(true);
-        // Player Reset
-        playerShip.action = "";
+        officialBoardState.board = new string[BoardState.rows, BoardState.columns]
+    {
+        { "x", "x", "x", "x", "x", "x", "x", "x", "x", "x" },
+        { "e", "e", "e", "e", "e", "e", "e", "e", "e", "e" },
+        { "e", "e", "e", "p", "e", "e", "o", "e", "e", "e" },
+        { "e", "e", "e", "e", "e", "e", "e", "e", "s1", "e" },
+        { "x", "x", "x", "x", "x", "x", "x", "x", "x", "x" },
+    };
+
+    // Player Reset
+    playerShip.action = "";
         playerShip.speed = playerStartSpeed;
         playerShip.isDead = false;
 
