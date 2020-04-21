@@ -37,6 +37,7 @@ public class SceneDebugger : MonoBehaviour
 
     void Awake()
     {
+        Screen.SetResolution(1920, 1080, true, 60);
         isFirstTurn.SetValue(true);
         // Player Reset
         playerShip.action = "";
