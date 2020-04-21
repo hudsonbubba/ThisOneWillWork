@@ -54,7 +54,6 @@ public class IntroAnim : MonoBehaviour
 
     private IEnumerator endScenEnum()
     {
-        SplashScreen.GetComponent<IntroDissolver>().e_FadeOut();
         yield return new WaitForSeconds(3f);
         SceneManager.LoadScene("REAL_MAIN");
     }
