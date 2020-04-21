@@ -6,10 +6,16 @@ using UnityEngine.UI;
 public class GameOverScript : MonoBehaviour
 {
     public StringVariable deathCause;
+    public GameObject restartButton;
+    public GameObject quitButton;
+    public GameObject backgroundImage;
     // Start is called before the first frame update
     void Start()
     {
         this.gameObject.GetComponent<Text>().text = "";
+        restartButton.SetActive(false);
+        backgroundImage.SetActive(false);
+        quitButton.SetActive(false);
     }
 
     public void e_displayGameOver()
@@ -37,5 +43,8 @@ public class GameOverScript : MonoBehaviour
                 break;
         }
         this.gameObject.GetComponent<Text>().text = text;
+        restartButton.SetActive(true);
+        backgroundImage.SetActive(true);
+        quitButton.SetActive(true);
     }
 }
