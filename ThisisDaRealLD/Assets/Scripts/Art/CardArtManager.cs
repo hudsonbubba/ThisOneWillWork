@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 public class CardArtManager : MonoBehaviour
@@ -29,10 +30,17 @@ public class CardArtManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        foreach (GameObject card in GameObject.FindGameObjectsWithTag("Card")) 
+
+        for (int i = 0; i < 50; i++)
+        {
+            string str = (i + 1).ToString();
+            cardList.Add(GameObject.FindGameObjectWithTag(str));
+        }
+
+        /*foreach (GameObject card in GameObject.FindGameObjectsWithTag("Card")) 
         {
             cardList.Add(card);
-        }
+        }*/
 
         int z = 0;
         for (int i = 0; i < cards.GetLength(0); i++)
